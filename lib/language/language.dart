@@ -8,6 +8,7 @@ class LocalConstants extends Translations {
           "No Data": "No Data",
           "No Internet": "No Internet",
           "Welcome to the": "Welcome to the",
+          "App Name": "Flutter Chat App",
         },
       };
 }
