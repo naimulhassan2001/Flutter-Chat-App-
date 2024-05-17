@@ -5,34 +5,35 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/app_colors.dart';
 
 class CustomTextField extends StatefulWidget {
-  const CustomTextField(
-      {this.inputFormatters,
-        this.onFieldSubmitted,
-        this.controller,
-        this.focusNode,
-        this.keyboardType = TextInputType.text,
-        this.textInputAction = TextInputAction.next,
-        this.cursorColor = AppColors.black,
-        this.textAlignVertical = TextAlignVertical.center,
-        this.textAlign = TextAlign.start,
-        this.onChanged,
-        this.maxLines = 1,
-        this.validator,
-        this.labelText,
-        this.hindText,
-        this.textStyle,
-        this.fillColor = AppColors.grey500,
-        this.suffixIcon,
-        this.suffixIconColor,
-        this.fieldBorderRadius,
-        this.fieldBorderColor = const Color(0xffE7F0FD),
-        this.isPassword = false,
-        this.isPrefixIcon = true,
-        this.readOnly = false,
-        this.maxLength,
-        super.key,
-        this.prefixIcon,
-        this.onTap});
+  const CustomTextField({
+    this.inputFormatters,
+    this.onFieldSubmitted,
+    this.controller,
+    this.focusNode,
+    this.keyboardType = TextInputType.text,
+    this.textInputAction = TextInputAction.next,
+    this.cursorColor = AppColors.black,
+    this.textAlignVertical = TextAlignVertical.center,
+    this.textAlign = TextAlign.start,
+    this.onChanged,
+    this.maxLines = 1,
+    this.validator,
+    this.labelText,
+    this.hindText,
+    this.textStyle = const TextStyle(color: AppColors.black),
+    this.fillColor = AppColors.greyscale,
+    this.suffixIcon,
+    this.suffixIconColor,
+    this.fieldBorderRadius,
+    this.fieldBorderColor = AppColors.black,
+    this.isPassword = false,
+    this.isPrefixIcon = true,
+    this.readOnly = false,
+    this.maxLength,
+    super.key,
+    this.prefixIcon,
+    this.onTap,
+  });
 
   final TextEditingController? controller;
   final FocusNode? focusNode;
@@ -99,38 +100,45 @@ class _CustomTextFieldState extends State<CustomTextField> {
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.isPassword
             ? GestureDetector(
-          onTap: toggle,
-          child: Padding(
-            padding: const EdgeInsets.only(
-                left: 16, right: 16, top: 16, bottom: 16),
-            child: obscureText
-                ? Icon(
-              Icons.visibility_off_outlined,
-              size: 20.sp,
-              color: widget.cursorColor,
-            )
-                : Icon(
-              Icons.visibility_outlined,
-              color: widget.cursorColor,
-              size: 20.sp,
-            ),
-          ),
-        )
-            : widget.suffixIcon,
+                onTap: toggle,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 16, right: 16, top: 16, bottom: 16),
+                  child: obscureText
+                      ? Icon(
+                          Icons.visibility_off_outlined,
+                          size: 20.sp,
+                          color: widget.cursorColor,
+                        )
+                      : Icon(
+                          Icons.visibility_outlined,
+                          color: widget.cursorColor,
+                          size: 20.sp,
+                        ),
+                ),
+              )
+            : widget.suffixIcon ??
+                GestureDetector(
+                    onTap: () {
+                      if (widget.controller != null) {
+                        widget.controller!.clear();
+                      }
+                    },
+                    child: const Icon(Icons.highlight_remove_outlined)),
         suffixIconColor: widget.suffixIconColor,
         border: OutlineInputBorder(
             borderRadius:
-            BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
+                BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
             borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
             gapPadding: 0),
         focusedBorder: OutlineInputBorder(
             borderRadius:
-            BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
-            borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
+                BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
+            borderSide: const BorderSide(color: AppColors.blue, width: 1),
             gapPadding: 0),
         enabledBorder: OutlineInputBorder(
             borderRadius:
-            BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
+                BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
             borderSide: BorderSide(color: widget.fieldBorderColor, width: 1),
             gapPadding: 0),
       ),

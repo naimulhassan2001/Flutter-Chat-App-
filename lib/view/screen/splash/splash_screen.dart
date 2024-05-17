@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(
       const Duration(seconds: 3),
-      () => Get.toNamed(AppRoutes.signIn),
+      () => Get.toNamed(AppRoutes.onboarding),
     );
     super.initState();
   }
@@ -27,16 +27,23 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomImage(
-            imageSrc: AppImages.logo,
-            height: 80.sp,
-            width: 80.sp,
+          Container(
+            height: 120.sp,
+            width: 120.sp,
+            margin: EdgeInsets.only(bottom: 12.h),
+            decoration: BoxDecoration(
+                image: const DecorationImage(image: AssetImage(AppImages.logo)),
+                borderRadius: BorderRadius.circular(16.r)),
           ),
-          CustomText(
-            text: "App Name".tr,
-            fontWeight: FontWeight.w600,
-            fontSize: 24.sp,
+          Center(
+            child: CustomText(
+              text: "App Name".tr,
+              fontWeight: FontWeight.w600,
+              fontSize: 24.sp,
+            ),
           )
         ],
       ),

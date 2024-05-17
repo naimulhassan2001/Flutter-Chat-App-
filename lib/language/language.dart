@@ -9,6 +9,22 @@ class LocalConstants extends Translations {
           "No Internet": "No Internet",
           "Welcome to the": "Welcome to the",
           "App Name": "Flutter Chat App",
+          "password validation":
+              "Password must be 8 characters & contain both \nalphabets and numerics",
+          "Forgot password": "Forgot password",
+          "Sign in": "Sign in",
+          "Password": "Password",
+          "Email": "Email",
+          "Login to Your Account": "Login to Your Account",
+          "Lets you in": "Lets you in",
+          "Sign in with password": "Sign in with password",
+          "Sign up": "Sign up",
+          "Create Your Account": "Create Your Account",
+          "Full Name": "Full Name",
+          "Phone Number": "Phone Number",
+          "Gender": "Gender",
+          "Location": "Location",
+          "Chat": "Chat",
         },
       };
 }

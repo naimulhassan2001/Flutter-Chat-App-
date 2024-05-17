@@ -15,8 +15,8 @@ Future<void> main() async {
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
   await PrefsHelper.getAllPrefData();
-  NotificationService.initLocalNotification();
-  SocketServices.connectToSocket();
+  // NotificationService.initLocalNotification();
+  // SocketServices.connectToSocket();
 
   runApp(const MyApp());
 }

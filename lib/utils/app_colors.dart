@@ -6,13 +6,20 @@ class AppColors {
   static const Color primaryColor = Colors.blue;
   static const Color secondary = Color(0xff454545);
   static const Color textSecondary = Color(0xFFB2B2B2);
-  static const Color background = Color(0xFFEEEEEE);
+  static const Color background = Color(0xFFF5F5F3);
+  static const Color foreground = Color(0xFF113953);
   static const Color deepOrange = Color(0xFFD07E2A);
   static const Color transparent = Colors.transparent;
 
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color blue = Colors.blue;
+
+  static const Color textFiledColor = Color(0xFFF9F9F9);
+  static const Color greyscale = Color(0xFFE0E0E0);
+  static const Color greyscale700 = Color(0xFF616161);
+  static const Color greyscale200 = Color(0xFFEEEEEE);
+
 
   /// ========================> Yellow <========================================
 

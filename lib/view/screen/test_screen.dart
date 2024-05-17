@@ -17,11 +17,9 @@ class _TestScreenState extends State<TestScreen> {
         body: Center(
             child: CustomButton(
                 titleText: "titleText",
-                onPressed: () {
+                onTap: () {
                   const CustomButtonLoader();
-                  setState(() {
-
-                  });
+                  setState(() {});
                 })));
   }
 }
