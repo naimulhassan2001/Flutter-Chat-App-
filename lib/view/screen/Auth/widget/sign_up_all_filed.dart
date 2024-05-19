@@ -52,12 +52,10 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
             ),
             IntlPhoneField(
               controller: controller.numberController,
-              onChanged: (value) {
-                print(value);
-              },
+              initialValue: "",
               decoration: InputDecoration(
                 hintText: "Phone Number".tr,
-                fillColor: AppColors.textFiledColor,
+                fillColor: AppColors.greyscale,
                 filled: true,
                 contentPadding:
                     EdgeInsets.symmetric(horizontal: 4.w, vertical: 14.h),
@@ -66,6 +64,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               ),
               initialCountryCode: "BD",
               disableLengthCheck: false,
+              autovalidateMode: AutovalidateMode.disabled,
             ),
             CustomTextField(
               controller: controller.genderController,
@@ -79,11 +78,6 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
             ),
             SizedBox(
               height: 20.h,
-            ),
-            CustomTextField(
-              controller: controller.addressController,
-              suffixIcon: const Icon(Icons.location_on),
-              labelText: "Location".tr,
             ),
           ],
         );
