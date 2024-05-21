@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/utils/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../utils/app_colors.dart';
@@ -33,9 +34,10 @@ class ChatListItem extends StatelessWidget {
             child: ClipOval(
               child: CustomImage(
                 imageSrc: image,
-                imageType: ImageType.png,
+                imageType: ImageType.network,
                 height: 60.sp,
                 width: 60.sp,
+                defaultImage: AppImages.defaultProfile,
               ),
             ),
           ),

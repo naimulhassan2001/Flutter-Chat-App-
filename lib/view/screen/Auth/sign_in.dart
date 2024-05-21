@@ -13,7 +13,9 @@ import '../../common_widgets/text_field/custom_text_field.dart';
 
 
 class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+  SignIn({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,64 +24,71 @@ class SignIn extends StatelessWidget {
       body: GetBuilder<SignInController>(builder: (controller) {
         return SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: CustomImage(
-                  imageSrc: AppImages.logo,
-                  height: 70.h,
-                  imageType: ImageType.png,
-                ),
-              ),
-              CustomText(
-                text: "Login to Your Account".tr,
-                fontSize: 24.sp,
-                bottom: 20.h,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              CustomTextField(
-                prefixIcon: const Icon(Icons.mail),
-                controller: controller.emailController,
-                labelText: "Email".tr,
-                validator: OtherHelper.emailValidator,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              CustomTextField(
-                controller: controller.passwordController,
-                validator: OtherHelper.passwordValidator,
-                prefixIcon: const Icon(Icons.lock),
-                isPassword: true,
-                labelText: "Password".tr,
-
-              ),
-
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  // onTap: () => Get.toNamed(AppRoutes.forgotPassword),
-                  child: CustomText(
-                    text: "Forgot password".tr,
-                    top: 16.h,
-                    color: AppColors.blue,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
+          child: Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: CustomImage(
+                    imageSrc: AppImages.logo,
+                    height: 70.h,
+                    imageType: ImageType.png,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 60.h,
-              ),
-              CustomButton(
-                titleText: "Sign in".tr,
-                onTap: () => Get.toNamed(AppRoutes.chatList),
-              ),
+                CustomText(
+                  text: "Login to Your Account".tr,
+                  fontSize: 24.sp,
+                  bottom: 20.h,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                CustomTextField(
+                  prefixIcon: const Icon(Icons.mail),
+                  controller: controller.emailController,
+                  labelText: "Email".tr,
+                  validator: OtherHelper.emailValidator,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                CustomTextField(
+                  controller: controller.passwordController,
+                  validator: OtherHelper.passwordValidator,
+                  prefixIcon: const Icon(Icons.lock),
+                  isPassword: true,
+                  labelText: "Password".tr,
 
-            ],
+                ),
+
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    // onTap: () => Get.toNamed(AppRoutes.forgotPassword),
+                    child: CustomText(
+                      text: "Forgot password".tr,
+                      top: 16.h,
+                      color: AppColors.blue,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 60.h,
+                ),
+                CustomButton(
+                  titleText: "Sign in".tr,
+                  onTap: () {
+                    if(formKey.currentState!.validate()) {
+                      controller.signInRepo();
+                    }
+                  },
+                ),
+
+              ],
+            ),
           ),
         );
       },),

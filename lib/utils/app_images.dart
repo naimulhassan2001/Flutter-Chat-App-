@@ -7,4 +7,5 @@ class AppImages {
 
   static const String logo = "$baseurl/logo.jpg";
   static const String profile = "$baseurl/profile.jpg";
+  static const String defaultProfile = "$baseurl/default_profile.jpg";
 }

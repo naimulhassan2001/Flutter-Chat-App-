@@ -18,7 +18,7 @@ class CustomImage extends StatefulWidget {
   final ImageType imageType;
   final BoxFit fill;
 
-  CustomImage({
+  const CustomImage({
     required this.imageSrc,
     this.imageColor,
     this.height,
@@ -64,14 +64,21 @@ class _CustomImageState extends State<CustomImage> {
 
     if (widget.imageType == ImageType.network) {
       imageWidget = Image.network(
-        widget.imageSrc,
+        widget.imageSrc.isNotEmpty ? widget.imageSrc : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%2Fimages%3Fk%3Ddefault%2Bprofile%2Bpicture&psig=AOvVaw0RvPMEqlP7xmKJyCrICc0R&ust=1716405976712000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCMjX7te8n4YDFQAAAAAdAAAAABAE',
         color: widget.imageColor,
         height: widget.height,
         width: widget.width,
         fit: widget.fill,
         errorBuilder: (context, error, stackTrace) {
+          print(error);
           print(widget.imageSrc);
-          return Image.asset(widget.defaultImage);
+          return Image.asset(
+            widget.defaultImage,
+            color: widget.imageColor,
+            height: widget.height,
+            width: widget.width,
+            fit: widget.fill,
+          );
         },
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent? loadingProgress) {

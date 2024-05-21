@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/utils/app_images.dart';
+import 'package:flutter_chat_app/utils/app_url.dart';
+import 'package:flutter_chat_app/view/common_widgets/image/custom_image.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -70,11 +73,18 @@ class ChatBubbleMessage extends StatelessWidget {
                             backgroundColor: AppColors.transparent,
                             radius: 25.sp,
                             child: ClipOval(
-                                child: Image.asset(
-                              image,
-                              width: 40.sp,
+                                //     child: Image.asset(
+                                //   image,
+                                //   width: 40.sp,
+                                //   height: 40.sp,
+                                //   fit: BoxFit.fill,
+                                // )
+                                child: CustomImage(
+                              imageSrc: "${AppUrls.imageUrl}$image",
                               height: 40.sp,
-                              fit: BoxFit.fill,
+                              width: 40.sp,
+                              defaultImage: AppImages.defaultProfile,
+                              imageType: ImageType.network,
                             ))),
                         Expanded(
                           child: ChatBubble(

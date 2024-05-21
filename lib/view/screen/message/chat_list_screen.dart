@@ -1,59 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/utils/app_colors.dart';
+import 'package:flutter_chat_app/controller/message/chat_controller.dart';
+import 'package:flutter_chat_app/models/api_response_model.dart';
+import 'package:flutter_chat_app/models/chat_list_model.dart';
+import 'package:flutter_chat_app/view/common_widgets/custom_loader.dart';
+import 'package:flutter_chat_app/view/common_widgets/error_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/app_routes.dart';
-import '../../../utils/app_images.dart';
-import '../../common_widgets/text/custom_text.dart';
 import 'widget/chat_list_item.dart';
 
-class ChatListScreen extends StatelessWidget {
+class ChatListScreen extends StatefulWidget {
   const ChatListScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const Drawer(),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: CustomText(
-          text: "Chat".tr,
-          fontWeight: FontWeight.w600,
-          fontSize: 24.sp,
-        ),
-        actions: [
-          const Icon(
-            Icons.search,
-            color: AppColors.black,
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: 20.w, left: 10.w),
-            child: const Icon(
-              Icons.notifications,
-              color: AppColors.black,
-            ),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 20.w),
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () => Get.toNamed(AppRoutes.message),
-              child: ChatListItem(
-                image: AppImages.profile,
-                name: "Sumaiya Akter",
-                message: "Hi, How are you?",
-              ),
-            );
-          },
-        ),
-      ),
+  State<ChatListScreen> createState() => _ChatListScreenState();
+}
+
+class _ChatListScreenState extends State<ChatListScreen> {
+  ChatController controller = Get.put(ChatController());
+
+  @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () => controller.getChatsRepo(),
     );
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<ChatController>(builder: (controller) {
+      return Scaffold(
+        body: switch (controller.status) {
+          Status.loading => const CustomLoader(),
+          Status.error => ErrorScreen(
+              onTap: () => controller.getChatsRepo(),
+            ),
+          Status.completed => Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 20.w),
+                itemCount: controller.chats.length,
+                itemBuilder: (context, index) {
+                  ChatListModel item = controller.chats[index];
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(AppRoutes.message,
+                        parameters: {"chatId": item.sId}),
+                    child: ChatListItem(
+                      image: item.image,
+                      name: item.name,
+                      message: item.message,
+                    ),
+                  );
+                },
+              ),
+            ),
+        },
+      );
+    });
   }
 }

@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 3), () {
       if (PrefsHelper.isLogIn) {
-        Get.offAllNamed(AppRoutes.chatList);
+        Get.offAllNamed(AppRoutes.home);
       } else {
         Get.toNamed(AppRoutes.onboarding);
       }

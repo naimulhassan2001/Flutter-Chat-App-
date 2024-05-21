@@ -53,14 +53,16 @@ class SignUpController extends GetxController {
       PrefsHelper.myName = data["data"]['name'];
       PrefsHelper.myEmail = data["data"]['email'];
       PrefsHelper.myImage = data["data"]['image'];
+      PrefsHelper.userId = data["data"]['_id'];
       PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString("token", PrefsHelper.token);
       PrefsHelper.setString("myName", PrefsHelper.myName);
       PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
       PrefsHelper.setString("myImage", PrefsHelper.myImage);
+      PrefsHelper.setString("userId", PrefsHelper.userId);
       PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
-      Get.offAllNamed(AppRoutes.chatList);
+      Get.offAllNamed(AppRoutes.home);
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);

@@ -10,6 +10,7 @@ class AppColors {
   static const Color foreground = Color(0xFF113953);
   static const Color deepOrange = Color(0xFFD07E2A);
   static const Color transparent = Colors.transparent;
+  static const Color green = Colors.green;
 
   static const Color white = Colors.white;
   static const Color black = Colors.black;

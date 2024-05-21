@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import "package:http/http.dart" as http;
 
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
 
+import '../core/app_routes.dart';
 import '../helpers/prefs_helper.dart';
 import '../models/api_response_model.dart';
 
@@ -18,7 +20,7 @@ class ApiService {
 
   ///<<<======================== Post Api ==============================>>>
 
-  static Future<ApiResponseModel> postApi(String url, body,
+  static Future<ApiResponseModel> postApi(String url, Map<String, String> body,
       {Map<String, String>? header}) async {
     dynamic responseJson;
 
@@ -29,8 +31,8 @@ class ApiService {
 
     if (kDebugMode) {
       print("==================================================> url $url");
-      print(
-          "==================================================> url $mainHeader");
+      print("==================================================> url $body");
+      print("============================================> url $mainHeader");
     }
 
     try {
@@ -71,6 +73,8 @@ class ApiService {
       final response = await http
           .get(Uri.parse(url), headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
+      print(response.statusCode);
+      print(response.body);
       responseJson = handleResponse(response);
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
@@ -234,6 +238,8 @@ class ApiService {
   ///<<<================== Api Response Status Code Handle ====================>>>
 
   static dynamic handleResponse(http.Response response) {
+    print(response.statusCode);
+    print(response.body);
     switch (response.statusCode) {
       case 200:
         return ApiResponseModel(response.statusCode,
@@ -242,7 +248,7 @@ class ApiService {
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
       case 401:
-        // Get.offAllNamed(AppRoutes.signInScreen);
+         Get.offAllNamed(AppRoutes.signIn);
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
       case 400:
