@@ -30,16 +30,21 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode,
     };
 
-    print("==================================================> url $url");
-    print(
+
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print(
         "==================================================> url $mainHeader");
+    }
 
     try {
       final response = await http
           .post(Uri.parse(url), body: body, headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
       responseJson = handleResponse(response);
-      print(response.body);
+      if (kDebugMode) {
+        print(response.body);
+      }
 
 
     } on SocketException {

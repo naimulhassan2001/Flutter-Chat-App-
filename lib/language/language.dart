@@ -25,6 +25,8 @@ class LocalConstants extends Translations {
           "Gender": "Gender",
           "Location": "Location",
           "Chat": "Chat",
+          "Confirm Password": "Confirm Password",
+          "The password does not match": "The password does not match",
         },
       };
 }

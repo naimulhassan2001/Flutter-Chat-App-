@@ -42,6 +42,16 @@ class OtherHelper {
     }
   }
 
+  static String? confirmPasswordValidator(value, passwordController) {
+    if (value.isEmpty) {
+      return "This field is required".tr;
+    } else if (value != passwordController.text) {
+      return "The password does not match".tr;
+    } else {
+      return null;
+    }
+  }
+
 
   static Future<void> dateOfBirthPicker(
       TextEditingController controller) async {

@@ -23,7 +23,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
         return Column(
           children: [
             CustomTextField(
-              prefixIcon: const Icon(Icons.group),
+              prefixIcon: const Icon(Icons.person),
               labelText: "Full Name".tr,
               controller: controller.nameController,
               validator: OtherHelper.validator,
@@ -36,16 +36,6 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               prefixIcon: const Icon(Icons.mail),
               labelText: "Email".tr,
               validator: OtherHelper.emailValidator,
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            CustomTextField(
-              controller: controller.passwordController,
-              prefixIcon: const Icon(Icons.lock),
-              isPassword: true,
-              labelText: "Password".tr,
-              validator: OtherHelper.passwordValidator,
             ),
             SizedBox(
               height: 20.h,
@@ -78,6 +68,26 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
             ),
             SizedBox(
               height: 20.h,
+            ),
+            CustomTextField(
+              controller: controller.passwordController,
+              prefixIcon: const Icon(Icons.lock),
+              isPassword: true,
+              labelText: "Password".tr,
+              validator: OtherHelper.passwordValidator,
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            CustomTextField(
+              controller: controller.confirmPasswordController,
+              prefixIcon: const Icon(Icons.lock),
+              isPassword: true,
+              labelText: "Confirm Password".tr,
+              validator: (value) {
+                return OtherHelper.confirmPasswordValidator(
+                    value, controller.passwordController);
+              },
             ),
           ],
         );
