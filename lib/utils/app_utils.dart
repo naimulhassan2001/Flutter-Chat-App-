@@ -24,7 +24,19 @@ class Utils {
   }
 
   static snackBarMessage(String title, String message) {
-    Get.snackbar(kDebugMode ? title : 'oops!', message,
-        backgroundColor: AppColors.white50);
+    Get.snackbar(
+      kDebugMode ? title : 'oops!',
+      message,
+      backgroundColor: AppColors.white50,
+    );
+  }
+
+  static successMessage(String title, String message) {
+    Get.snackbar(
+      kDebugMode ? title : 'Successfully!',
+      message,
+      backgroundColor: AppColors.white50,
+      snackPosition: SnackPosition.BOTTOM,
+    );
   }
 }

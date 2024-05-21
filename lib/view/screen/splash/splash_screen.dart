@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/core/app_routes.dart';
+import 'package:flutter_chat_app/helpers/prefs_helper.dart';
 import 'package:flutter_chat_app/utils/app_images.dart';
 import 'package:flutter_chat_app/view/common_widgets/image/custom_image.dart';
 import 'package:flutter_chat_app/view/common_widgets/text/custom_text.dart';
@@ -16,10 +17,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(
-      const Duration(seconds: 3),
-      () => Get.toNamed(AppRoutes.onboarding),
-    );
+    Future.delayed(const Duration(seconds: 3), () {
+      if (PrefsHelper.isLogIn) {
+        Get.offAllNamed(AppRoutes.chatList);
+      } else {
+        Get.toNamed(AppRoutes.onboarding);
+      }
+    });
     super.initState();
   }
 
