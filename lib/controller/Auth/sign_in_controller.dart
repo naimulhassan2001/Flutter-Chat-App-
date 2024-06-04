@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import '../../core/app_routes.dart';
@@ -12,8 +13,8 @@ import '../../utils/app_utils.dart';
 class SignInController extends GetxController {
   bool isLoading = false;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController(text: kDebugMode ? "demo@gmail.com" : "");
+  TextEditingController passwordController = TextEditingController(text:  kDebugMode ?"hello123" : "");
 
   signInRepo() async {
     isLoading = true;

@@ -27,12 +27,13 @@ class ApiService {
     Map<String, String> mainHeader = {
       'Authorization': "Bearer ${PrefsHelper.token}",
       'Accept-Language': PrefsHelper.localizationLanguageCode,
+      'Cookie': 'yourCookieName= ${PrefsHelper.token}',
     };
 
     if (kDebugMode) {
       print("==================================================> url $url");
-      print("==================================================> url $body");
-      print("============================================> url $mainHeader");
+      print("==================================================> body $body");
+      print("============================================> header ${header ?? mainHeader}");
     }
 
     try {
@@ -67,7 +68,10 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
 
-    print("==================================================> url $url");
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("============================================> header ${header ?? mainHeader}");
+    }
 
     try {
       final response = await http
@@ -98,6 +102,11 @@ class ApiService {
       'Authorization': "Bearer ${PrefsHelper.token}",
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("============================================> header ${header ?? mainHeader}");
+    }
 
     try {
       final response = await http
@@ -129,6 +138,12 @@ class ApiService {
       'Authorization': "Bearer ${PrefsHelper.token}",
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
+
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("============================================> header ${header ?? mainHeader}");
+    }
 
     try {
       if (body != null) {
@@ -166,6 +181,12 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
 
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("============================================> header ${header ?? mainHeader}");
+    }
+
     try {
       if (body != null) {
         final response = await http
@@ -200,6 +221,8 @@ class ApiService {
       required Map<String, String> body,
       required String otp}) async {
     try {
+
+
       var request = http.MultipartRequest('POST', Uri.parse(url));
       body.forEach((key, value) {
         request.fields[key] = value;
@@ -215,6 +238,8 @@ class ApiService {
       request.headers["Otp"] = "OTP $otp";
 
       var response = await request.send();
+
+
 
       if (response.statusCode == 200) {
         String data = await response.stream.bytesToString();
@@ -281,10 +306,9 @@ class ApiService {
       };
 
       if (kDebugMode) {
-        print("===============================================>url $url");
-        print("===============================================>body $body");
-        print(
-            "===============================================>header ${header ?? mainHeader}");
+        print("==================================================> url $url");
+        print("==================================================> body $body");
+        print("============================================> header ${header ?? mainHeader}");
       }
 
       var request = http.MultipartRequest(method, Uri.parse(url));
