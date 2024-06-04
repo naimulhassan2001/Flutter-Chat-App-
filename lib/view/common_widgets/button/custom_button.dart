@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/app_colors.dart';
 import '../custom_button_loader.dart';
@@ -66,7 +65,7 @@ class CustomButton extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: GoogleFonts.roboto(
+          style:TextStyle(
               color: titleColor,
               fontSize: titleSize ?? 16.sp,
               fontWeight: titleWeight),

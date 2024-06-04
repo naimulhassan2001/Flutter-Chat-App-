@@ -5,8 +5,6 @@ import 'package:flutter_chat_app/view/common_widgets/custom_loader.dart';
 import 'package:flutter_chat_app/view/common_widgets/error_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../controller/message/message_controller.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
@@ -155,10 +153,6 @@ class _MessageScreenState extends State<MessageScreen> {
                           suffixIcon: GestureDetector(
                               onTap: () => controller.addNewMessage(),
                               child: const Icon(Icons.send)),
-                          textStyle: GoogleFonts.prompt(
-                              fontSize: 14.h,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.black),
                           fieldBorderColor: Colors.white,
                           fieldBorderRadius: 8,
                           controller: controller.messageController,

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../utils/app_colors.dart';
 
@@ -18,8 +17,7 @@ class CustomText extends StatelessWidget {
       this.color = AppColors.black,
       required this.text,
       this.style = false,
-      this.overflow = TextOverflow.ellipsis
-      });
+      this.overflow = TextOverflow.ellipsis});
 
   final double left;
   final double right;
@@ -44,17 +42,11 @@ class CustomText extends StatelessWidget {
         text,
         maxLines: maxLines,
         overflow: overflow,
-        style: style == true
-            ? GoogleFonts.plusJakartaSans(
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-                color: color,
-              )
-            : GoogleFonts.roboto(
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-                color: color,
-              ),
+        style: TextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: color,
+        ),
       ),
     );
   }

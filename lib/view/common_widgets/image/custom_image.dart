@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 import '../../../utils/app_images.dart';
 
-enum ImageType { png, svg, network, decorationImage }
+enum ImageType { png, network, decorationImage }
 
 class CustomImage extends StatefulWidget {
   final String imageSrc;
@@ -23,7 +22,7 @@ class CustomImage extends StatefulWidget {
     this.imageColor,
     this.height,
     this.width,
-    this.imageType = ImageType.svg,
+    this.imageType = ImageType.png,
     this.fill = BoxFit.fill,
     this.defaultImage = AppImages.noImage,
     super.key,
@@ -40,15 +39,7 @@ class _CustomImageState extends State<CustomImage> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.imageType == ImageType.svg) {
-      imageWidget = SvgPicture.asset(
-        widget.imageSrc,
-        color: widget.imageColor,
-        height: widget.height,
-        width: widget.width,
-        fit: widget.fill,
-      );
-    }
+
 
     if (widget.imageType == ImageType.png) {
       imageWidget = Image.asset(

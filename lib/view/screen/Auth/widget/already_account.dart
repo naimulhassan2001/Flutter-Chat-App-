@@ -3,7 +3,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../utils/app_colors.dart';
 
@@ -24,7 +23,7 @@ class AlreadyAccountRichText extends StatelessWidget {
               children: [
                 TextSpan(
                   text: "Already have an account".tr,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: TextStyle(
                     color: AppColors.grey300,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
@@ -32,7 +31,7 @@ class AlreadyAccountRichText extends StatelessWidget {
                 ),
                 TextSpan(
                   text: "  ".tr,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: TextStyle(
                     color: AppColors.grey300,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
@@ -40,7 +39,7 @@ class AlreadyAccountRichText extends StatelessWidget {
                 ),
                 TextSpan(
                   text: "Sign in".tr,
-                  style: GoogleFonts.plusJakartaSans(
+                  style: TextStyle(
                     color: AppColors.primaryColor,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w700,
