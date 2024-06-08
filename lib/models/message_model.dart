@@ -2,7 +2,9 @@ class MessageModel {
   String sId;
   String chat;
   String message;
-  String sender;
+  String senderId;
+  String senderName;
+  String senderImage;
   String name;
   String image;
   String messageType;
@@ -13,7 +15,9 @@ class MessageModel {
     required this.sId,
     required this.chat,
     required this.message,
-    required this.sender,
+    required this.senderId,
+    required this.senderName,
+    required this.senderImage,
     required this.name,
     required this.image,
     required this.messageType,
@@ -25,18 +29,24 @@ class MessageModel {
     String sId = json['_id'] ?? "";
     String chat = json['chat'] ?? "";
     String message = json['message'] ?? "";
-    String sender = json['sender']['_id'] ?? "";
+    Map sender = json['sender'] ?? {};
+    String senderId = sender.isNotEmpty ? sender['_id'] ?? "" : "";
+    String senderName = sender.isNotEmpty ? sender['name'] ?? "" : "";
+    String senderImage =
+        sender.isNotEmpty ? sender['image'] ?? "" : "";
     String messageType = json['messageType'] ?? "";
     String createdAt = json['createdAt'] ?? "";
     String updatedAt = json['updatedAt'] ?? "";
     String name = json['name'] ?? "";
     String image = json['image'] ?? "";
 
-
-    return MessageModel(sId: sId,
+    return MessageModel(
+        sId: sId,
         chat: chat,
         message: message,
-        sender: sender,
+        senderId: senderId,
+        senderName: senderName,
+        senderImage: senderImage,
         name: name,
         image: image,
         updatedAt: updatedAt,

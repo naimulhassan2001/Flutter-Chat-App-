@@ -46,14 +46,12 @@ class SignUpController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
-      print(response.body.runtimeType);
       var data = jsonDecode(response.body);
-      PrefsHelper.token = data["data"]["accessToken"];
-      PrefsHelper.myName = data["data"]['name'];
-      PrefsHelper.myEmail = data["data"]['email'];
-      PrefsHelper.myImage = data["data"]['image'];
-      PrefsHelper.userId = data["data"]['_id'];
+      PrefsHelper.token = data["data"]["token"]["accessToken"];
+      PrefsHelper.myName = data["data"]["user"]['name'];
+      PrefsHelper.myEmail = data["data"]["user"]['email'];
+      PrefsHelper.myImage = data["data"]["user"]['image'];
+      PrefsHelper.userId = data["data"]["user"]['_id'];
       PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString("token", PrefsHelper.token);

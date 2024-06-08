@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,7 @@ import 'package:flutter_chat_app/controller/home/home_controller.dart';
 import 'package:flutter_chat_app/view/common_widgets/text/custom_text.dart';
 import 'package:flutter_chat_app/view/screen/home/widget/home_item.dart';
 import 'package:flutter_chat_app/view/screen/message/chat_list_screen.dart';
-import 'package:flutter_chat_app/view/screen/test_screen.dart';
+import 'package:flutter_chat_app/view/screen/profile/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +14,7 @@ import '../../../utils/app_colors.dart';
 class Home extends StatelessWidget {
   Home({super.key});
 
-  List pages = [const ChatListScreen(), const TestScreen()];
+  List pages = [const ChatListScreen(), const MyProfileScreen()];
 
   @override
   Widget build(BuildContext context) {

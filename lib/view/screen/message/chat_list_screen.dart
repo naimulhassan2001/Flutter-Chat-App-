@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/controller/message/chat_controller.dart';
 import 'package:flutter_chat_app/models/api_response_model.dart';
@@ -22,6 +24,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
 
   @override
   void initState() {
+    controller.listenChats();
     Future.delayed(
       Duration.zero,
       () => controller.getChatsRepo(),
@@ -48,7 +51,7 @@ class _ChatListScreenState extends State<ChatListScreen> {
                   ChatListModel item = controller.chats[index];
                   return GestureDetector(
                     onTap: () => Get.toNamed(AppRoutes.message,
-                        parameters: {"chatId": item.sId}),
+                        parameters: {"chat": jsonEncode(item.toJson())}),
                     child: ChatListItem(
                       image: item.image,
                       name: item.name,

@@ -77,8 +77,7 @@ class ApiService {
       final response = await http
           .get(Uri.parse(url), headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
-      print(response.statusCode);
-      print(response.body);
+
       responseJson = handleResponse(response);
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
@@ -124,8 +123,6 @@ class ApiService {
     }
     return responseJson;
   }
-
-  ///<<<======================== Patch Api ==============================>>>
 
   static Future<ApiResponseModel> patchApi(
     String url, {
@@ -200,7 +197,6 @@ class ApiService {
         responseJson = handleResponse(response);
       }
 
-      ;
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -213,64 +209,22 @@ class ApiService {
     return responseJson;
   }
 
-  ///<<<======================= Multipart Request ============================>>>
-
-  static Future<ApiResponseModel> signUpMultipartRequest(
-      {required String url,
-      String? imagePath,
-      required Map<String, String> body,
-      required String otp}) async {
-    try {
 
 
-      var request = http.MultipartRequest('POST', Uri.parse(url));
-      body.forEach((key, value) {
-        request.fields[key] = value;
-      });
-
-      if (imagePath != null) {
-        var mimeType = lookupMimeType(imagePath);
-        var img = await http.MultipartFile.fromPath('image', imagePath,
-            contentType: MediaType.parse(mimeType!));
-        request.files.add(img);
-      }
-
-      request.headers["Otp"] = "OTP $otp";
-
-      var response = await request.send();
-
-
-
-      if (response.statusCode == 200) {
-        String data = await response.stream.bytesToString();
-        return ApiResponseModel(200, jsonDecode(data)['message'], data);
-      } else {
-        String data = await response.stream.bytesToString();
-        return ApiResponseModel(
-            response.statusCode, jsonDecode(data)['message'], data);
-      }
-    } on SocketException {
-      return ApiResponseModel(503, "No internet connection", '');
-    } on FormatException {
-      return ApiResponseModel(400, "Bad Response Request", '');
-    } on TimeoutException {
-      return ApiResponseModel(408, "Request Time Out", "");
-    } catch (e) {
-      return ApiResponseModel(400, e.toString(), "");
-    }
-  }
-
-  ///<<<================== Api Response Status Code Handle ====================>>>
 
   static dynamic handleResponse(http.Response response) {
-    print(response.statusCode);
-    print(response.body);
+    if (kDebugMode) {
+      print("==============================>statusCode ${response.statusCode}");
+      print("==============================>body ${response.body}");
+      print("==============================>response headers ${response.headers}");
+    }
+
     switch (response.statusCode) {
       case 200:
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
       case 201:
-        return ApiResponseModel(response.statusCode,
+        return ApiResponseModel(200,
             jsonDecode(response.body)['message'], response.body);
       case 401:
          Get.offAllNamed(AppRoutes.signIn);
@@ -286,7 +240,6 @@ class ApiService {
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
       default:
-        print(response.statusCode);
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
     }

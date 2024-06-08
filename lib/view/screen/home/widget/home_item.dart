@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/view/common_widgets/text/custom_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class HomeItem extends StatelessWidget {
   const HomeItem({

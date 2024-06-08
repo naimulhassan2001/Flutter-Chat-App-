@@ -9,4 +9,5 @@ class AppUrls {
   static const signIn = "$baseUrl/auth/sign-in";
   static const chat = "$baseUrl/chat";
   static const conversation = "$baseUrl/conversation";
+  static const profile = "$baseUrl/user/profile";
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/utils/app_images.dart';
+import 'package:flutter_chat_app/utils/app_url.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../utils/app_colors.dart';
@@ -7,7 +8,7 @@ import '../../../common_widgets/image/custom_image.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
 class ChatListItem extends StatelessWidget {
-  ChatListItem({
+  const ChatListItem({
     super.key,
     required this.image,
     required this.name,
@@ -33,7 +34,7 @@ class ChatListItem extends StatelessWidget {
             radius: 30.sp,
             child: ClipOval(
               child: CustomImage(
-                imageSrc: image,
+                imageSrc: "${AppUrls.imageUrl}$image",
                 imageType: ImageType.network,
                 height: 60.sp,
                 width: 60.sp,

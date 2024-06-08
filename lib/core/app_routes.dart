@@ -1,4 +1,6 @@
 import 'package:flutter_chat_app/view/screen/home/home_screen.dart';
+import 'package:flutter_chat_app/view/screen/profile/profile_screen.dart';
+import 'package:flutter_chat_app/view/screen/profile/update_profile.dart';
 import 'package:get/get.dart';
 
 import '../view/screen/Auth/sign_in.dart';
@@ -18,6 +20,8 @@ class AppRoutes {
   static const String chatList = "/chat_list_screen.dart";
   static const String message = "/message_screen.dart";
   static const String home = "/home_screen.dart";
+  static const String updateProfile = "/update_profile.dart";
+  static const String myProfile = "/profile_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -28,5 +32,7 @@ class AppRoutes {
     GetPage(name: chatList, page: () => ChatListScreen()),
     GetPage(name: message, page: () => MessageScreen()),
     GetPage(name: home, page: () => Home()),
+    GetPage(name: updateProfile, page: () => UpdateProfile()),
+    GetPage(name: myProfile, page: () => MyProfileScreen()),
   ];
 }

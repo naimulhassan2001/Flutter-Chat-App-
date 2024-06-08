@@ -29,6 +29,9 @@ class LocalConstants extends Translations {
           "The password does not match": "The password does not match",
           "Profile": "Profile",
           "Home": "Home",
+          "Log Out": "Log Out",
+          "Settings": "Settings",
+          "Update Profile": "Update Profile",
         },
       };
 }

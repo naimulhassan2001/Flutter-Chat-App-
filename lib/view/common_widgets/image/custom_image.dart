@@ -2,8 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
-
 import '../../../utils/app_images.dart';
 
 enum ImageType { png, network, decorationImage }
@@ -24,7 +22,7 @@ class CustomImage extends StatefulWidget {
     this.width,
     this.imageType = ImageType.png,
     this.fill = BoxFit.fill,
-    this.defaultImage = AppImages.noImage,
+    this.defaultImage = AppImages.defaultProfile,
     super.key,
   });
 
@@ -61,8 +59,11 @@ class _CustomImageState extends State<CustomImage> {
         width: widget.width,
         fit: widget.fill,
         errorBuilder: (context, error, stackTrace) {
-          print(error);
-          print(widget.imageSrc);
+          if (kDebugMode) {
+            print(error);
+            print(widget.imageSrc);
+          }
+
           return Image.asset(
             widget.defaultImage,
             color: widget.imageColor,

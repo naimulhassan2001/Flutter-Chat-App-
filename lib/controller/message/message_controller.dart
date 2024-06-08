@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/helpers/prefs_helper.dart';
 import 'package:flutter_chat_app/models/api_response_model.dart';
@@ -22,7 +23,7 @@ class MessageController extends GetxController {
   ScrollController scrollController = ScrollController();
   TextEditingController messageController = TextEditingController();
 
-  addNewMessage() async {
+  addNewMessage(String chatId) async {
     TimeOfDay currentTime = TimeOfDay.now();
 
     messages.insert(
@@ -34,7 +35,20 @@ class MessageController extends GetxController {
             isMe: true));
     update();
 
+    var body = {
+      "chat": chatId,
+      "message": messageController.text,
+      "sender": PrefsHelper.userId
+    };
+
     messageController.clear();
+
+    SocketServices.socket.emitWithAck("send-message", body, ack: (data) {
+      if (kDebugMode) {
+        print(
+            "===============================================================> Received acknowledgment: $data");
+      }
+    });
   }
 
   getMessagesRepo(String chatId) async {
@@ -42,8 +56,6 @@ class MessageController extends GetxController {
     update();
 
     var response = await ApiService.getApi("${AppUrls.conversation}/$chatId");
-
-    print(response.statusCode);
 
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)["data"] ?? [];
@@ -55,10 +67,8 @@ class MessageController extends GetxController {
             time: message.createdAt,
             message: message.message,
             image: message.image,
-            isMe: message.sender == PrefsHelper.userId ? true : false));
+            isMe: message.senderId == PrefsHelper.userId ? true : false));
       }
-
-      print(messages.length);
 
       status = Status.completed;
       update();
@@ -71,8 +81,10 @@ class MessageController extends GetxController {
   }
 
   listenMessage(String chatId) async {
-    SocketServices.socket.on('receive-message::$chatId', (data) {
-      print("socket data get : $data");
+    SocketServices.socket.on("receive-message::${PrefsHelper.userId}", (data) {
+      if (kDebugMode) {
+        print("socket data get : $data");
+      }
       MessageModel message = MessageModel.fromJson(data);
       var time = localTime(message.createdAt);
 
@@ -83,18 +95,14 @@ class MessageController extends GetxController {
               time: time,
               message: message.message,
               image: message.image,
-              isMe: message.sender == PrefsHelper.userId ? true : false));
+              isMe: message.senderId == PrefsHelper.userId ? true : false));
       update();
-
-      print(
-          "============================================>messages ${messages.length}");
-      print("============================================>data $data");
     });
   }
 
   String localTime(String createdAt) {
-    DateTime localTime = DateTime.parse(createdAt).toLocal();
-    var time = localTime.toString().split(" ")[1];
+    DateTime localTime = DateTime.tryParse(createdAt) ?? DateTime.now();
+    var time = localTime.toLocal().toString().split(" ")[1];
     var hour = time.split(":")[0];
     var minute = time.split(":")[1].split(":")[0];
 

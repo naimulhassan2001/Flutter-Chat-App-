@@ -11,7 +11,9 @@ class OtherHelper {
   static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
 
   static String? validator(value) {
-    print(value);
+    if (kDebugMode) {
+      print(value);
+    }
     if (value.isEmpty) {
       return "This field is required";
     } else {

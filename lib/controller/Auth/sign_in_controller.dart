@@ -13,7 +13,7 @@ import '../../utils/app_utils.dart';
 class SignInController extends GetxController {
   bool isLoading = false;
 
-  TextEditingController emailController = TextEditingController(text: kDebugMode ? "demo@gmail.com" : "");
+  TextEditingController emailController = TextEditingController(text: kDebugMode ? "user@gmail.com" : "");
   TextEditingController passwordController = TextEditingController(text:  kDebugMode ?"hello123" : "");
 
   signInRepo() async {
@@ -31,14 +31,12 @@ class SignInController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
-      print(response.body.runtimeType);
       var data = jsonDecode(response.body);
-      PrefsHelper.token = data["data"]["accessToken"];
-      PrefsHelper.myName = data["data"]['name'];
-      PrefsHelper.myEmail = data["data"]['email'];
-      PrefsHelper.myImage = data["data"]['image'];
-      PrefsHelper.userId = data["data"]['_id'];
+      PrefsHelper.token = data["data"]["token"]["accessToken"];
+      PrefsHelper.myName = data["data"]["user"]['name'];
+      PrefsHelper.myEmail = data["data"]["user"]['email'];
+      PrefsHelper.myImage = data["data"]["user"]['image'];
+      PrefsHelper.userId = data["data"]["user"]['_id'];
       PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString("token", PrefsHelper.token);
