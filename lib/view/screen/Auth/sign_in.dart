@@ -4,6 +4,7 @@ import 'package:flutter_chat_app/helpers/other_helper.dart';
 import 'package:flutter_chat_app/utils/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../core/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../../common_widgets/button/custom_button.dart';
 import '../../common_widgets/image/custom_image.dart';
@@ -64,7 +65,7 @@ class SignIn extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
-                    // onTap: () => Get.toNamed(AppRoutes.forgotPassword),
+                    onTap: () => Get.toNamed(AppRoutes.forgotPassword),
                     child: CustomText(
                       text: "Forgot password".tr,
                       top: 16.h,
@@ -79,6 +80,7 @@ class SignIn extends StatelessWidget {
                 ),
                 CustomButton(
                   titleText: "Sign in".tr,
+                  isLoading: controller.isLoading,
                   onTap: () {
                     if(formKey.currentState!.validate()) {
                       controller.signInRepo();

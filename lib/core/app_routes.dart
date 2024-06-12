@@ -1,3 +1,7 @@
+import 'package:flutter_chat_app/view/screen/Auth/change%20password/change_password_screen.dart';
+import 'package:flutter_chat_app/view/screen/Auth/forgot%20password/create_password.dart';
+import 'package:flutter_chat_app/view/screen/Auth/forgot%20password/forgot_password.dart';
+import 'package:flutter_chat_app/view/screen/Auth/forgot%20password/verify_forgot_otp.dart';
 import 'package:flutter_chat_app/view/screen/home/home_screen.dart';
 import 'package:flutter_chat_app/view/screen/profile/profile_screen.dart';
 import 'package:flutter_chat_app/view/screen/profile/update_profile.dart';
@@ -22,6 +26,10 @@ class AppRoutes {
   static const String home = "/home_screen.dart";
   static const String updateProfile = "/update_profile.dart";
   static const String myProfile = "/profile_screen.dart";
+  static const String createPassword = "/create_password.dart";
+  static const String forgotPassword = "/forgot_password.dart";
+  static const String verifyForgotOtp = "/verify_forgot_otp.dart";
+  static const String changePassword = "/change_password_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -34,5 +42,9 @@ class AppRoutes {
     GetPage(name: home, page: () => Home()),
     GetPage(name: updateProfile, page: () => UpdateProfile()),
     GetPage(name: myProfile, page: () => MyProfileScreen()),
+    GetPage(name: createPassword, page: () => CreatePassword()),
+    GetPage(name: forgotPassword, page: () => ForgotPasswordScreen()),
+    GetPage(name: verifyForgotOtp, page: () => VerifyForgotPassword()),
+    GetPage(name: changePassword, page: () => ChangePasswordScreen()),
   ];
 }

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/app_routes.dart';
+
 
 class PrefsHelper extends GetxController {
   static String token = "";
@@ -48,7 +50,7 @@ class PrefsHelper extends GetxController {
     preferences.setBool("isNotifications", true);
     preferences.setString("mySubscription", "shopping");
 
-    // Get.offAllNamed(AppRoutes.login);
+     Get.offAllNamed(AppRoutes.signIn);
     getAllPrefData();
   }
 
