@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/view/screen/Auth/widget/already_account.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,9 +30,7 @@ class SignUpScreen extends StatelessWidget {
                     bottom: 20.h,
                   ),
                   const SignUpAllField(),
-                  SizedBox(
-                    height: 20.h,
-                  ),
+                 20.height,
                   CustomButton(
                     titleText: "Sign up".tr,
                     isLoading: controller.isLoading,
@@ -41,9 +40,7 @@ class SignUpScreen extends StatelessWidget {
                       }
                     },
                   ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  10.height,
                   const AlreadyAccountRichText()
                 ]),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../core/app_routes.dart';
@@ -8,7 +9,6 @@ import '../../../../controller/Auth/change_password_controller.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
-
 
 class ChangePasswordScreen extends StatelessWidget {
   ChangePasswordScreen({super.key});
@@ -28,69 +28,57 @@ class ChangePasswordScreen extends StatelessWidget {
       ),
       body: GetBuilder<ChangePasswordController>(
         builder: (controller) {
-          return Padding(
+          return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Form(
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 70.h,
-                  ),
+                  50.height,
                   CustomTextField(
                     controller: controller.currentPasswordController,
                     hindText: "Current  Password".tr,
                     validator: OtherHelper.passwordValidator,
-                    fillColor: AppColors.blue,
                     isPassword: true,
                     prefixIcon: Icon(
                       Icons.lock,
                       size: 20.sp,
                     ),
                   ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
+                  16.height,
                   CustomTextField(
                     controller: controller.newPasswordController,
                     hindText: "New Password".tr,
                     validator: OtherHelper.passwordValidator,
-                    fillColor: AppColors.blue,
                     isPassword: true,
                     prefixIcon: Icon(
                       Icons.lock,
                       size: 20.sp,
                     ),
                   ),
-                  SizedBox(
-                    height: 16.h,
-                  ),
+                  16.height,
                   CustomTextField(
                     controller: controller.confirmPasswordController,
                     hindText: "Confirm Password".tr,
                     validator: (value) => OtherHelper.confirmPasswordValidator(
                         value, controller.newPasswordController),
-                    fillColor: AppColors.blue,
                     isPassword: true,
                     prefixIcon: Icon(
                       Icons.lock,
                       size: 20.sp,
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: GestureDetector(
-                      onTap: () => Get.toNamed(AppRoutes.forgotPassword),
-                      child: CustomText(
-                        text: "Forgot Password".tr,
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.sp,
-                        top: 16.h,
-                        bottom: 20.h,
-                      ),
+                  GestureDetector(
+                    onTap: () => Get.toNamed(AppRoutes.forgotPassword),
+                    child: CustomText(
+                      text: "Forgot Password".tr,
+                      color: AppColors.primaryColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.sp,
+                      top: 16.h,
+                      bottom: 40.h,
                     ),
-                  ),
+                  ).end,
                   CustomButton(
                     titleText: "Confirm".tr,
                     isLoading: controller.isLoading,

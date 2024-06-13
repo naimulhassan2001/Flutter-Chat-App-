@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/models/api_response_model.dart';
 import 'package:flutter_chat_app/utils/app_url.dart';
 import 'package:flutter_chat_app/view/common_widgets/custom_loader.dart';
@@ -23,11 +24,9 @@ class MyProfileScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
             child: Column(
               children: [
-                SizedBox(
-                  height: 50.h,
-                ),
+                50.height,
                 controller.status != Status.completed
-                    ? const CustomLoader()
+                    ? SizedBox(height: 100.h, child: const CustomLoader())
                     : Column(
                         children: [
                           Center(
@@ -62,7 +61,7 @@ class MyProfileScreen extends StatelessWidget {
                 Item(
                   icon: Icons.settings,
                   title: "Settings".tr,
-                  // onTap: () => Get.toNamed(AppRoutes.setting),
+                  onTap: () => Get.toNamed(AppRoutes.setting),
                 ),
                 Item(
                   icon: Icons.logout,

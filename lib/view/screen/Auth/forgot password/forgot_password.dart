@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controller/Auth/forgot_password_controller.dart';
@@ -29,25 +30,14 @@ class ForgotPasswordScreen extends StatelessWidget {
             key: formKey,
             child: Column(
               children: [
-                SizedBox(
-                  height: 105.h,
-                ),
+                105.height,
                 CustomTextField(
                   controller: controller.emailController,
                   prefixIcon: const Icon(Icons.mail),
                   labelText: "Email".tr,
                   validator: OtherHelper.emailValidator,
                 ),
-                SizedBox(
-                  height: 100.h,
-                ),
-                // CustomNumberTextFiled(
-                //   controller: controller.numberController,
-                //   countryChange: (value) => print(value),
-                // ),
-                // SizedBox(
-                //   height: 70.h,
-                // ),
+                100.height,
               ],
             ),
           ),

@@ -14,6 +14,7 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color blue = Colors.blue;
+  static const Color red = Colors.red;
 
   static const Color textFiledColor = Color(0xFFF9F9F9);
   static const Color greyscale = Color(0xFFE0E0E0);

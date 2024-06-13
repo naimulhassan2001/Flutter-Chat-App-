@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/controller/Auth/sign_in_controller.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/helpers/other_helper.dart';
 import 'package:flutter_chat_app/utils/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,18 +42,14 @@ class SignIn extends StatelessWidget {
                   fontSize: 24.sp,
                   bottom: 20.h,
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
+                20.height,
                 CustomTextField(
                   prefixIcon: const Icon(Icons.mail),
                   controller: controller.emailController,
                   labelText: "Email".tr,
                   validator: OtherHelper.emailValidator,
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
+               20.height,
                 CustomTextField(
                   controller: controller.passwordController,
                   validator: OtherHelper.passwordValidator,
@@ -75,9 +72,7 @@ class SignIn extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 60.h,
-                ),
+                60.height,
                 CustomButton(
                   titleText: "Sign in".tr,
                   isLoading: controller.isLoading,

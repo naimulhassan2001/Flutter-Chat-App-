@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/helpers/other_helper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -28,18 +29,14 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               controller: controller.nameController,
               validator: OtherHelper.validator,
             ),
-            SizedBox(
-              height: 20.h,
-            ),
+            20.height,
             CustomTextField(
               controller: controller.emailController,
               prefixIcon: const Icon(Icons.mail),
               labelText: "Email".tr,
               validator: OtherHelper.emailValidator,
             ),
-            SizedBox(
-              height: 20.h,
-            ),
+            20.height,
             IntlPhoneField(
               controller: controller.numberController,
               initialValue: "",
@@ -66,9 +63,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               labelText: "Gender".tr,
               validator: OtherHelper.validator,
             ),
-            SizedBox(
-              height: 20.h,
-            ),
+            20.height,
             CustomTextField(
               controller: controller.passwordController,
               prefixIcon: const Icon(Icons.lock),
@@ -76,9 +71,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               labelText: "Password".tr,
               validator: OtherHelper.passwordValidator,
             ),
-            SizedBox(
-              height: 20.h,
-            ),
+            20.height,
             CustomTextField(
               controller: controller.confirmPasswordController,
               prefixIcon: const Icon(Icons.lock),

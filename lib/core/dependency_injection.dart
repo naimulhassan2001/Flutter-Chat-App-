@@ -7,6 +7,7 @@ import '../controller/Auth/sign_up_controller.dart';
 import '../controller/home/home_controller.dart';
 import '../controller/message/message_controller.dart';
 import '../controller/profile/profile_controller.dart';
+import '../controller/setting/setting_controller.dart';
 
 class DependencyInjection extends Bindings {
   @override
@@ -18,5 +19,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => ProfileController(), fenix: true);
     Get.lazyPut(() => ChangePasswordController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
+    Get.lazyPut(() => SettingController(), fenix: true);
   }
 }

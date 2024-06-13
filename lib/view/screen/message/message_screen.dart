@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/models/api_response_model.dart';
 import 'package:flutter_chat_app/models/chat_list_model.dart';
 import 'package:flutter_chat_app/models/chat_message_model.dart';
@@ -74,9 +75,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 12.w,
-                  ),
+                  12.width,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -138,44 +137,35 @@ class _MessageScreenState extends State<MessageScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 20.w,
+                  Row(children: [
+                    20.width,
+                    Container(
+                      padding: EdgeInsets.all(6.sp),
+                      margin: EdgeInsets.only(right: 10.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.r),
+                          border: Border.all(color: AppColors.black)),
+                      child: const Icon(Icons.add_circle_outlined),
+                    ),
+                    Expanded(
+                      child: CustomTextField(
+                        maxLines: 1,
+                        keyboardType: TextInputType.text,
+                        textAlign: TextAlign.start,
+                        hindText: "",
+                        onFieldSubmitted: (value) =>
+                            controller.addNewMessage(chatData.sId),
+                        suffixIcon: GestureDetector(
+                            onTap: () => controller.addNewMessage(chatData.sId),
+                            child: const Icon(Icons.send)),
+                        fieldBorderColor: Colors.white,
+                        fieldBorderRadius: 8,
+                        controller: controller.messageController,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(6.sp),
-                        margin: EdgeInsets.only(right: 10.w),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.r),
-                            border: Border.all(color: AppColors.black)),
-                        child: const Icon(Icons.add_circle_outlined),
-                      ),
-                      Expanded(
-                        child: CustomTextField(
-                          maxLines: 1,
-                          keyboardType: TextInputType.text,
-                          textAlign: TextAlign.start,
-                          hindText: "",
-                          onFieldSubmitted: (value) =>
-                              controller.addNewMessage(chatData.sId),
-                          suffixIcon: GestureDetector(
-                              onTap: () =>
-                                  controller.addNewMessage(chatData.sId),
-                              child: const Icon(Icons.send)),
-                          fieldBorderColor: Colors.white,
-                          fieldBorderRadius: 8,
-                          controller: controller.messageController,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20.w,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  )
+                    ),
+                    20.width,
+                  ]),
+                  20.width
                 ],
               )));
     });

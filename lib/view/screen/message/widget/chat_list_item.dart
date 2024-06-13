@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/utils/app_images.dart';
 import 'package:flutter_chat_app/utils/app_url.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,9 +43,7 @@ class ChatListItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            width: 12.w,
-          ),
+          12.height,
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

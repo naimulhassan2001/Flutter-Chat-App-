@@ -1,4 +1,5 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -32,25 +33,21 @@ logOutPopUp() {
             children: [
               Expanded(
                   child: CustomButton(
-                    titleText: "Yes".tr,
-                    buttonHeight: 40.h,
-                    onTap: () => PrefsHelper.removeAllPrefData(),
-                  )),
-              SizedBox(
-                width: 16.w,
-              ),
+                titleText: "Yes".tr,
+                buttonHeight: 40.h,
+                onTap: () => PrefsHelper.removeAllPrefData(),
+              )),
+              16.width,
               Expanded(
                   child: CustomButton(
-                    titleText: "No".tr,
-                    borderWidth: 1.5,
-                    buttonHeight: 40.h,
-                    borderColor: AppColors.blue,
-                    buttonColor: AppColors.transparent,
-                    titleColor: AppColors.black,
-                    onTap: () => Get.back(),
-                  )),
-
-
+                titleText: "No".tr,
+                borderWidth: 1.5,
+                buttonHeight: 40.h,
+                borderColor: AppColors.blue,
+                buttonColor: AppColors.transparent,
+                titleColor: AppColors.black,
+                onTap: () => Get.back(),
+              )),
             ],
           ),
         ],

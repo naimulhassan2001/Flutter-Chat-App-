@@ -32,6 +32,16 @@ class LocalConstants extends Translations {
           "Log Out": "Log Out",
           "Settings": "Settings",
           "Update Profile": "Update Profile",
+          "Change Password": "Change Password",
+          "Done": "Done",
+          "Cancel": "Cancel",
+          "All your changes will be deleted and you will no longer be able to access them":
+              "All your changes will be deleted and you will no longer be able to access them",
+          "Are you sure": "Are you sure?",
+          "Privacy Policy": "Privacy Policy",
+          "Delete account": "Delete account",
+          "About Us": "About Us",
+          "Support": "Support",
         },
       };
 }

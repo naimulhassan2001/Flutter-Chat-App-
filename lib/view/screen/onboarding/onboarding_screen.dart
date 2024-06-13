@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/utils/app_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,9 +20,7 @@ class OnboardingScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
         child: Column(
           children: [
-            SizedBox(
-              height: 163.h,
-            ),
+           163.height,
             Center(
               child: CustomImage(
                 imageSrc: AppImages.logo,
@@ -39,9 +38,7 @@ class OnboardingScreen extends StatelessWidget {
               titleText: "Sign in with password".tr,
               onTap: () => Get.toNamed(AppRoutes.signIn),
             ),
-            SizedBox(
-              height: 24.h,
-            ),
+            24.height,
             CustomButton(
               titleText: "Sign up".tr,
               onTap: () => Get.toNamed(AppRoutes.signUp),

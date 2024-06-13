@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/app_colors.dart';
@@ -8,14 +9,15 @@ import 'text/custom_text.dart';
 class Item extends StatelessWidget {
   const Item(
       {super.key,
-        this.icon,
-        required this.title,
-        this.image = "",
-        this.disableDivider = false,
-        this.onTap,
-        this.color = AppColors.black,
-        this.vertical,
-        this.disableIcon = false});
+      this.icon,
+      required this.title,
+      this.image = "",
+      this.disableDivider = false,
+      this.onTap,
+      this.color = AppColors.black,
+      this.iconColor = AppColors.black,
+      this.vertical,
+      this.disableIcon = false});
 
   final IconData? icon;
   final String title;
@@ -24,6 +26,7 @@ class Item extends StatelessWidget {
   final bool disableIcon;
   final VoidCallback? onTap;
   final Color color;
+  final Color iconColor;
   final double? vertical;
 
   @override
@@ -31,17 +34,16 @@ class Item extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding:
-        EdgeInsets.symmetric(horizontal: 24.w, vertical: vertical ?? 6.h),
+        padding: EdgeInsets.symmetric(vertical: vertical ?? 6.h),
         child: Column(
           children: [
             Row(
               children: [
                 icon != null
                     ? Icon(
-                  icon,
-                  color: color,
-                )
+                        icon,
+                        color: iconColor,
+                      )
                     : CustomImage(imageSrc: image),
                 CustomText(
                   text: title,
@@ -52,14 +54,15 @@ class Item extends StatelessWidget {
                 ),
                 const Spacer(),
                 disableIcon
-                    ? const SizedBox()
+                    ? 0.height
                     : Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: 20.sp,
-                )
+                        Icons.arrow_forward_ios_outlined,
+                        size: 20.sp,
+                      )
               ],
             ),
-            disableDivider ? const SizedBox() : const Divider()
+            6.height,
+            disableDivider ? 0.height : const Divider()
           ],
         ),
       ),

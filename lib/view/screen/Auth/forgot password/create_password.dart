@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../utils/app_images.dart';
@@ -34,9 +35,7 @@ class CreatePassword extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 64.h,
-                  ),
+                  64.height,
                   CustomImage(
                     imageSrc: AppImages.createPasswordImage,
                     imageType: ImageType.png,
@@ -56,9 +55,7 @@ class CreatePassword extends StatelessWidget {
                     isPassword: true,
                     validator: OtherHelper.passwordValidator,
                   ),
-                  SizedBox(
-                    height: 24.h,
-                  ),
+                 24.height,
                   CustomTextField(
                     controller: controller.confirmPasswordController,
                     prefixIcon: const Icon(Icons.lock),
@@ -67,9 +64,7 @@ class CreatePassword extends StatelessWidget {
                         value, controller.passwordController),
                     isPassword: true,
                   ),
-                  SizedBox(
-                    height: 64.h,
-                  ),
+                  64.height,
                   CustomButton(
                     titleText: "Continue".tr,
                     isLoading: controller.isLoadingReset,

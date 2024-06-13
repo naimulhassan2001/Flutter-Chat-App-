@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/app_colors.dart';
 
@@ -49,9 +50,7 @@ class PopUpMenu extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                         ),
-                        SizedBox(
-                          width: 8.w,
-                        ),
+                        8.width,
                         Text(
                           items[index].toString(),
                           style: style,

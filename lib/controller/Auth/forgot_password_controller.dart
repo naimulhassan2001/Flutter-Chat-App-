@@ -54,8 +54,6 @@ class ForgetPasswordController extends GetxController {
   }
 
   Future<void> forgotPasswordRepo() async {
-    Get.toNamed(AppRoutes.verifyForgotOtp);
-    return;
     isLoadingEmail = true;
     update();
 
@@ -77,8 +75,6 @@ class ForgetPasswordController extends GetxController {
   ///<<<===================Verify Password Repo==============================>>>
 
   Future<void> verifyOtpRepo() async {
-    Get.toNamed(AppRoutes.createPassword);
-    return;
     isLoadingVerify = true;
     update();
     Map<String, String> body = {
@@ -94,6 +90,7 @@ class ForgetPasswordController extends GetxController {
       var data = jsonDecode(response.body);
       forgetPasswordToken = data['data']['forgetPasswordToken'];
       Get.toNamed(AppRoutes.createPassword);
+      _timer?.cancel();
     } else {
       Get.snackbar(response.statusCode.toString(), response.message);
     }
@@ -105,9 +102,6 @@ class ForgetPasswordController extends GetxController {
   ///<<<===================Verify Password Repo==============================>>>
 
   Future<void> resetPasswordRepo() async {
-    Get.offAllNamed(AppRoutes.signIn);
-    return;
-
     isLoadingReset = true;
     update();
     Map<String, String> header = {
@@ -130,9 +124,7 @@ class ForgetPasswordController extends GetxController {
       numberController.clear();
       passwordController.clear();
       confirmPasswordController.clear();
-    } else if (response.statusCode == 400) {
-      Utils.toastMessage(response.message);
-    } else {
+    }  else {
       Get.snackbar(response.statusCode.toString(), response.message);
     }
     isLoadingReset = false;
