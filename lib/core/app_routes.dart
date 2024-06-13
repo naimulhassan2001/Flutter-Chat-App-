@@ -3,6 +3,7 @@ import 'package:flutter_chat_app/view/screen/Auth/forgot%20password/create_passw
 import 'package:flutter_chat_app/view/screen/Auth/forgot%20password/forgot_password.dart';
 import 'package:flutter_chat_app/view/screen/Auth/forgot%20password/verify_forgot_otp.dart';
 import 'package:flutter_chat_app/view/screen/home/home_screen.dart';
+import 'package:flutter_chat_app/view/screen/message/video_call_screen.dart';
 import 'package:flutter_chat_app/view/screen/profile/profile_screen.dart';
 import 'package:flutter_chat_app/view/screen/profile/update_profile.dart';
 import 'package:flutter_chat_app/view/screen/setting/setting_screen.dart';
@@ -32,6 +33,7 @@ class AppRoutes {
   static const String verifyForgotOtp = "/verify_forgot_otp.dart";
   static const String changePassword = "/change_password_screen.dart";
   static const String setting = "/setting_screen.dart";
+  static const String videoCall = "/video_call_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -49,5 +51,6 @@ class AppRoutes {
     GetPage(name: verifyForgotOtp, page: () => VerifyForgotPassword()),
     GetPage(name: changePassword, page: () => ChangePasswordScreen()),
     GetPage(name: setting, page: () => SettingScreen()),
+    GetPage(name: videoCall, page: () => VideoCallScreen()),
   ];
 }

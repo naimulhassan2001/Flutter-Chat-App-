@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_chat_app/helpers/prefs_helper.dart';
 import 'package:flutter_chat_app/models/api_response_model.dart';
 import 'package:flutter_chat_app/models/message_model.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../models/chat_message_model.dart';
 import '../../services/api_service.dart';
 import '../../services/socket_service.dart';
@@ -108,4 +110,45 @@ class MessageController extends GetxController {
 
     return "$hour:$minute";
   }
+}
+
+
+
+
+class TherapistController extends GetxController{
+
+  TextEditingController searchPatentName = TextEditingController();
+
+  TextEditingController messageController = TextEditingController();
+
+  RxInt index = 0.obs;
+  RxString sendMessage = ''.obs;
+  File? selectedMessageImage;
+  RxBool isCallConnected = true.obs;
+  RxBool isVideoCall = false.obs;
+  RxBool isVolumeMute = false.obs;
+  RxBool isMicMute = false.obs;
+  Rx<Offset> position = Offset(80.0, 20.0).obs;
+  RxDouble dragHorizontal = 20.0.obs;
+  RxDouble dragVertical = 80.0.obs;
+
+  Map sessionListMap =
+  {
+    "totalSessions" : 26,
+    "completeSessions" : 03
+  };
+
+
+  Future openGallery() async {
+    final pickImage =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    selectedMessageImage = File(pickImage!.path);
+    update();
+  }
+
+// Future<void> openCamera() async{
+//   final cameras = await availableCameras();
+//   Get.to(VideoCallScreen(cameras: cameras));
+// }
+
 }

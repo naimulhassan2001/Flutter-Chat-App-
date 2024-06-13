@@ -9,4 +9,6 @@ class AppImages {
   static const String profile = "$baseurl/profile.jpg";
   static const String defaultProfile = "$baseurl/default_profile.jpg";
   static const String createPasswordImage = "$baseurl/create_password_image.png";
+  static const String callerImg = "$baseurl/callerImg.png";
+  static const String patient_1 = "$baseurl/patient_1.png";
 }

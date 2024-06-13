@@ -20,5 +20,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => ChangePasswordController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
     Get.lazyPut(() => SettingController(), fenix: true);
+    Get.lazyPut(() => TherapistController(), fenix: true);
   }
 }
