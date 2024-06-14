@@ -1,10 +1,4 @@
-class PaymentKey {
-  static const String publishableKey =
-      "pk_test_51P7cjfFYdd3YNv37nIg6ZHebtVgCX4hL4o98rkCDgT5Xc9n0SaiTsYMsN3fNLFBZzjzIldTVpGcKMGJAJYmPKsrr00uztWaY1E";
-
-  static const String secretKey =
-      "sk_test_51P7cjfFYdd3YNv3705REeoKX21e0sHxOyfJWDFHHBMcgpB02geqFXzMUJ1qGLM01fekYDkDiJ6HmNlrkCatt4AiK00g0LcmR1M";
-
-  static const String paymentIntent =
-      "https://api.stripe.com/v1/payment_intents";
-}
+const appId = "8bd57b59e78e480cab86ef429dcf57de";
+const token =
+    "007eJxTYGBf28Xp/PL/bJ1Xn0T6b+3RYHX4cPn1wvkBmfe4/He/ucenwGCRlGJqnmRqmWpukWpiYZCcmGRhlppmYmSZkpxmap6SmsoTk9YQyMhg0iTPysgAgSA+F0NuZXxyRmJeXmoOAwMAjAIiuQ==";
+const channel = "my_channel";
