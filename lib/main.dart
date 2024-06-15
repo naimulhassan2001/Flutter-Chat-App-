@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             PrefsHelper.localizationCountryCode),
         fallbackLocale: const Locale("en", "US"),
         theme: themeData,
-        initialRoute: AppRoutes.videoCall,
+        initialRoute: AppRoutes.splash,
         transitionDuration: const Duration(milliseconds: 200),
         getPages: AppRoutes.routes,
       ),

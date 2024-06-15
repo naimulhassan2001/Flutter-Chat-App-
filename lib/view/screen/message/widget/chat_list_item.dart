@@ -43,7 +43,7 @@ class ChatListItem extends StatelessWidget {
               ),
             ),
           ),
-          12.height,
+          12.width,
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

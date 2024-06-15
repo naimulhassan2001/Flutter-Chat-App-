@@ -47,19 +47,16 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         return Stack(
           children: [
             Center(
-                child: messageController.videoPaused.value == true
-                    ? messageController.myremoteUid.value == 0
-                        ? const SizedBox()
-                        : AgoraVideoView(
-                            controller: VideoViewController.remote(
-                              rtcEngine: messageController.engine,
-                              canvas: VideoCanvas(
-                                  uid: messageController.myremoteUid.value),
-                              connection:
-                                  const RtcConnection(channelId: channel),
-                            ),
-                          )
-                    : const CustomText(text: "Remote video off")),
+                child: messageController.myremoteUid.value == 0
+                    ? const SizedBox()
+                    : AgoraVideoView(
+                        controller: VideoViewController.remote(
+                          rtcEngine: messageController.engine,
+                          canvas: VideoCanvas(
+                              uid: messageController.myremoteUid.value),
+                          connection: const RtcConnection(channelId: channel),
+                        ),
+                      )),
             Positioned(
               top: 48.h,
               left: 20.w,
@@ -130,11 +127,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       child: InkWell(
                           // onTap: messageController.setLocalVideo,
                           child: Icon(
-                            messageController.localUserJoined.value
-                                ? Icons.videocam_outlined
-                                : Icons.videocam_off_outlined,
-                            color: AppColors.white,
-                          )),
+                        messageController.localUserJoined.value
+                            ? Icons.videocam_outlined
+                            : Icons.videocam_off_outlined,
+                        color: AppColors.white,
+                      )),
                     ),
                     Container(
                       height: 36,
@@ -146,11 +143,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       child: InkWell(
                           // onTap: () => messageController.setVolume(),
                           child: Icon(
-                            messageController.isVolume.value
-                                ? Icons.volume_up_outlined
-                                : Icons.volume_off_outlined,
-                            color: AppColors.white,
-                          )),
+                        messageController.isVolume.value
+                            ? Icons.volume_up_outlined
+                            : Icons.volume_off_outlined,
+                        color: AppColors.white,
+                      )),
                     ),
                     Container(
                       height: 36,

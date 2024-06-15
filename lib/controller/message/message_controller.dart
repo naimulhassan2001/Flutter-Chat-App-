@@ -7,6 +7,7 @@ import 'package:flutter_chat_app/models/api_response_model.dart';
 import 'package:flutter_chat_app/models/message_model.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../models/chat_message_model.dart';
 import '../../services/api_service.dart';
 import '../../services/socket_service.dart';
@@ -64,6 +65,7 @@ class MessageController extends GetxController {
 
   Future<void> initilize() async {
     Future.delayed(Duration.zero, () async {
+      await [Permission.microphone, Permission.camera].request();
       await _initAgoraRtcEngine();
       _addAgoraEventHandlers();
       await engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
@@ -124,7 +126,8 @@ class MessageController extends GetxController {
               (RtcConnection connection, RemoteVideoStats remoteVideoStats) {
             if (remoteVideoStats.receivedBitrate == 0) {
               videoPaused.value = true;
-              print("remoteVideoStats.receivedBitrate ${remoteVideoStats.receivedBitrate}");
+              print(
+                  "remoteVideoStats.receivedBitrate ${remoteVideoStats.receivedBitrate}");
               update();
             } else {
               videoPaused.value = false;

@@ -1,5 +1,4 @@
-
-const appId = "8bd57b59e78e480cab86ef429dcf57de";
+const appId = "7d092b2981564d6fa6e81411c6c1363c";
 const token =
-    "007eJxTYIhW0jRqWZNewXMivvil5GLNz3d3q5l/uOfwsDHtvNqP8BoFBoukFFPzJFPLVHOLVBMLg+TEJAuz1DQTI8uU5DRT85RUx485aQ2BjAzmf9+xMDJAIIjPxZBbGZ+ckZiXl5rDwAAASKwjgw==";
-const channel = "my_channel";
+    "007eJxTYPCTrLnEZu4Z1HabV0Kf01xL/5DFuiD5y1Xuf0KLvoc1ViowmKcYWBolGVlaGJqamaSYpSWapVoYmhgaJpslGxqbGSe/V81NawhkZPDKmMzKyACBID47g3N+Xl5qcgkDAwBs7Ryv";
+const channel = "Connect";
