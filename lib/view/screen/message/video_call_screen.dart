@@ -1,4 +1,4 @@
-import 'dart:io';
+/*import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -165,11 +165,12 @@ class VideoCallScreen extends StatelessWidget {
       }),
     );
   }
-}
+}*/
 
-/*import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:wakelock/wakelock.dart';
 import '../../../controller/message/message_controller.dart';
 import '../../../utils/payment_key.dart';
@@ -187,7 +188,12 @@ class _VideoCallState extends State<VideoCallScreen> {
   @override
   void initState() {
     super.initState();
+    requestPermissions();
     Wakelock.enable(); // Turn on wakelock feature till call is running
+  }
+
+  Future<void> requestPermissions() async {
+    await [Permission.microphone, Permission.camera].request();
   }
 
   @override
@@ -326,4 +332,4 @@ class _VideoCallState extends State<VideoCallScreen> {
               ))),
     );
   }
-}*/
+}

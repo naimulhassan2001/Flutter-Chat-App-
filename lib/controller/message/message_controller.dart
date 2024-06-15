@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/helpers/prefs_helper.dart';
@@ -13,6 +14,7 @@ import '../../services/socket_service.dart';
 import '../../utils/app_images.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
+
 /*import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:wakelock/wakelock.dart';*/
 
@@ -146,7 +148,6 @@ class TherapistController extends GetxController {
 // }
 }
 
-/*
 class CallController extends GetxController {
   RxInt myremoteUid = 0.obs;
   RxBool localUserJoined = false.obs;
@@ -170,7 +171,7 @@ class CallController extends GetxController {
     clear();
   }
 
-  clear() {
+  void clear() {
     engine.leaveChannel();
     isFront.value = false;
     reConnectingRemoteView.value = false;
@@ -182,8 +183,9 @@ class CallController extends GetxController {
     update();
   }
 
+
   Future<void> initilize() async {
-    Future.delayed(Duration.zero, () async {
+    await Future.delayed(Duration.zero, () async {
       await _initAgoraRtcEngine();
       _addAgoraEventHandlers();
       await engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
@@ -197,64 +199,65 @@ class CallController extends GetxController {
         uid: 0,
         options: const ChannelMediaOptions(),
       );
-
       update();
     });
   }
 
+
+
   Future<void> _initAgoraRtcEngine() async {
-    engine = createAgoraRtcEngine();
-    await engine.initialize(const RtcEngineContext(
-      appId: appId,
-      channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
-    ));
-    await engine.enableVideo();
-    //await engine.startPreview();
-    await engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
+    try {
+      engine = createAgoraRtcEngine();
+      await engine.initialize(
+        RtcEngineContext(
+          appId: appId, // Ensure this is correctly set
+          channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+        ),
+      );
+      await engine.enableVideo();
+      await engine.setClientRole(
+        role: ClientRoleType.clientRoleBroadcaster,
+      );
+      print("Agora RTC Engine initialized successfully.");
+    } catch (e) {
+      print("Error initializing Agora RTC Engine: $e");
+    }
   }
+
 
   void _addAgoraEventHandlers() {
     engine.registerEventHandler(
       RtcEngineEventHandler(
-          onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
-            localUserJoined.value = true;
-            update();
-          },
-          onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
-            localUserJoined.value = true;
-            myremoteUid.value = remoteUid;
-            update();
-          },
-          onUserOffline: (RtcConnection connection, int remoteUid,
-              UserOfflineReasonType reason) {
-            if (reason == UserOfflineReasonType.userOfflineDropped) {
-              Wakelock.disable();
-              myremoteUid.value = 0;
-              onCallEnd();
-              update();
-            } else {
-              myremoteUid.value = 0;
-              onCallEnd();
-              update();
-            }
-          },
-          onRemoteVideoStats:
-              (RtcConnection connection, RemoteVideoStats remoteVideoStats) {
-            if (remoteVideoStats.receivedBitrate == 0) {
-              videoPaused.value = true;
-              update();
-            } else {
-              videoPaused.value = false;
-              update();
-            }
-          },
-          onTokenPrivilegeWillExpire:
-              (RtcConnection connection, String token) {},
-          onLeaveChannel: (RtcConnection connection, stats) {
-            clear();
+        onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
+          localUserJoined.value = true;
+          update();
+        },
+        onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
+          localUserJoined.value = true;
+          myremoteUid.value = remoteUid;
+          update();
+        },
+        onUserOffline: (RtcConnection connection, int remoteUid,
+            UserOfflineReasonType reason) {
+          if (reason == UserOfflineReasonType.userOfflineDropped) {
+            myremoteUid.value = 0;
             onCallEnd();
-            update();
-          }),
+          } else {
+            myremoteUid.value = 0;
+            onCallEnd();
+          }
+        },
+        onRemoteVideoStats:
+            (RtcConnection connection, RemoteVideoStats remoteVideoStats) {
+          videoPaused.value = remoteVideoStats.receivedBitrate == 0;
+          update();
+        },
+        onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {},
+        onLeaveChannel: (RtcConnection connection, stats) {
+          clear();
+          onCallEnd();
+        },
+      ),
     );
   }
 
@@ -266,7 +269,6 @@ class CallController extends GetxController {
 
   void onCallEnd() {
     clear();
-    update();
     Get.back();
   }
 
@@ -283,7 +285,6 @@ class CallController extends GetxController {
   }
 
   void onSwitchCamera() {
-    engine.switchCamera().then((value) => {}).catchError((err) {});
+    engine.switchCamera().then((value) {}).catchError((err) {});
   }
 }
-*/
