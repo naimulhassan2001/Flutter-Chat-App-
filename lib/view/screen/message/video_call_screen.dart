@@ -2,18 +2,11 @@ import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/extension/extension.dart';
-import 'package:flutter_chat_app/view/common_widgets/text/custom_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../controller/message/message_controller.dart';
-import '../../../utils/app_images.dart';
-
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:wakelock/wakelock.dart';
-
 import '../../../utils/payment_key.dart';
 
 class VideoCallScreen extends StatefulWidget {

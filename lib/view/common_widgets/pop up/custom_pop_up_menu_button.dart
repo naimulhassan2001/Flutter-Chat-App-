@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/extension/extension.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../utils/app_colors.dart';
 
 class PopUpMenu extends StatelessWidget {
-  PopUpMenu({
+  const PopUpMenu({
     super.key,
     required this.items,
     required this.selectedItem,
@@ -19,7 +18,7 @@ class PopUpMenu extends StatelessWidget {
   final Color selectedColor;
   final Color unselectedColor;
   final Function(int index) onTap;
-  TextStyle? style;
+  final TextStyle? style;
 
   @override
   Widget build(BuildContext context) {

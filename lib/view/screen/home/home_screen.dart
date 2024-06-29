@@ -1,17 +1,14 @@
-import 'dart:convert';
+
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/controller/home/home_controller.dart';
-import 'package:flutter_chat_app/models/user_model.dart';
 import 'package:flutter_chat_app/view/common_widgets/text/custom_text.dart';
 import 'package:flutter_chat_app/view/screen/home/widget/home_item.dart';
 import 'package:flutter_chat_app/view/screen/message/chat_list_screen.dart';
 import 'package:flutter_chat_app/view/screen/profile/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../../core/app_routes.dart';
 import '../../../utils/app_colors.dart';
 import '../message/widget/chat_list_item.dart';
 

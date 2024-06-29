@@ -40,6 +40,7 @@ class _TestScreenState extends State<TestScreen> {
                 padding: const EdgeInsets.all(10),
                 child: Stack(
                   children: [
+
                     Center(
                       child: callCon.localUserJoined.value == true
                           ? callCon.videoPaused.value == true
