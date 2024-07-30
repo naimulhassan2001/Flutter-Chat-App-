@@ -29,6 +29,8 @@ class SignUpController extends GetxController {
   }
 
   signUpRepo() async {
+    Get.offAllNamed(AppRoutes.home);
+    return ;
     isLoading = true;
     update();
 
