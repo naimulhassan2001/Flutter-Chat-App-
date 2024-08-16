@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -11,25 +12,27 @@ import 'package:get/get.dart';
 class SignUpController extends GetxController {
   bool isPopUpOpen = false;
   bool isLoading = false;
+  bool isLoadingVerify = false;
 
   List list = ["Male", "Female", "Other"];
+
+  Timer? _timer;
+  int start = 0;
+
+  String time = "";
+
+  static SignUpController get instance => Get.put(SignUpController());
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
-  TextEditingController genderController = TextEditingController(text: "Male");
-  TextEditingController addressController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
 
-  onSelectItem(int index) {
-    genderController.text = list[index];
-    update();
-    Get.back();
-  }
+
 
   signUpRepo() async {
-    Get.offAllNamed(AppRoutes.home);
+    Get.offAllNamed(AppRoutes.userVerify);
     return ;
     isLoading = true;
     update();
@@ -37,8 +40,6 @@ class SignUpController extends GetxController {
     var body = {
       "name": nameController.text,
       "email": emailController.text,
-      "number": numberController.text,
-      "gender": genderController.text,
       "password": passwordController.text
     };
 
@@ -69,6 +70,64 @@ class SignUpController extends GetxController {
     }
 
     isLoading = false;
+    update();
+  }
+
+  void startTimer() {
+    _timer?.cancel(); // Cancel any existing timer
+    start = 180; // Reset the start value
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (start > 0) {
+        start--;
+        final minutes = (start ~/ 60).toString().padLeft(2, '0');
+        final seconds = (start % 60).toString().padLeft(2, '0');
+
+        time = "$minutes:$seconds";
+
+        update();
+      } else {
+        _timer?.cancel();
+      }
+    });
+  }
+
+  Future<void> verifyOtpRepo() async {
+    Get.toNamed(AppRoutes.home);
+    return;
+    isLoadingVerify = true;
+    update();
+    Map<String, String> body = {"otp": otpController.text};
+    var response =
+    await ApiService.postApi(AppUrls.userVerify, body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      PrefsHelper.token = data['data']["accessToken"];
+      PrefsHelper.userId = data['data']["attributes"]["_id"];
+      PrefsHelper.myImage = data['data']["attributes"]["image"];
+      PrefsHelper.myName = data['data']["attributes"]["fullName"];
+      PrefsHelper.myEmail = data['data']["attributes"]["email"];
+      PrefsHelper.isLogIn = true;
+
+      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
+      PrefsHelper.setString('token', PrefsHelper.token);
+      PrefsHelper.setString("userId", PrefsHelper.userId);
+      PrefsHelper.setString("myImage", PrefsHelper.myImage);
+      PrefsHelper.setString("myName", PrefsHelper.myName);
+      PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
+      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
+
+      // if (PrefsHelper.myRole == 'consultant') {
+      //   Get.toNamed(AppRoutes.personalInformation);
+      // } else {
+      //   Get.offAllNamed(AppRoutes.patientsHome);
+      // }
+    } else {
+      Get.snackbar(response.statusCode.toString(), response.message);
+    }
+
+    isLoadingVerify = false;
     update();
   }
 }

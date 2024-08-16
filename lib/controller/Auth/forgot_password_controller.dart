@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../core/app_routes.dart';
 import '../../services/api_service.dart';
@@ -44,7 +45,9 @@ class ForgetPasswordController extends GetxController {
 
         time = "$minutes:$seconds";
 
-        print(timer);
+        if (kDebugMode) {
+          print(timer);
+        }
 
         update();
       } else {

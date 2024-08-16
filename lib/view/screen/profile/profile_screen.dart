@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/extension/extension.dart';
-import 'package:flutter_chat_app/models/api_response_model.dart';
+import 'package:flutter_chat_app/helpers/prefs_helper.dart';
 import 'package:flutter_chat_app/utils/app_url.dart';
-import 'package:flutter_chat_app/view/common_widgets/custom_loader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../core/app_routes.dart';
@@ -25,34 +24,32 @@ class MyProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 50.height,
-                controller.status != Status.completed
-                    ? SizedBox(height: 100.h, child: const CustomLoader())
-                    : Column(
-                        children: [
-                          Center(
-                            child: CircleAvatar(
-                              radius: 50.sp,
-                              backgroundColor: Colors.transparent,
-                              child: ClipOval(
-                                child: CustomImage(
-                                  imageSrc:
-                                      "${AppUrls.imageUrl}${ProfileController.userModel.image}",
-                                  imageType: ImageType.network,
-                                  height: 100.sp,
-                                  width: 100.sp,
-                                ),
-                              ),
-                            ),
+                Column(
+                  children: [
+                    Center(
+                      child: CircleAvatar(
+                        radius: 50.sp,
+                        backgroundColor: Colors.transparent,
+                        child: ClipOval(
+                          child: CustomImage(
+                            imageSrc:
+                                "${AppUrls.imageUrl}${PrefsHelper.myImage}",
+                            imageType: ImageType.network,
+                            height: 100.sp,
+                            width: 100.sp,
                           ),
-                          CustomText(
-                            text: ProfileController.userModel.name,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                            top: 20.h,
-                            bottom: 40.h,
-                          ),
-                        ],
+                        ),
                       ),
+                    ),
+                    CustomText(
+                      text: PrefsHelper.myName,
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      top: 20.h,
+                      bottom: 40.h,
+                    ),
+                  ],
+                ),
                 Item(
                   icon: Icons.person,
                   title: "Update Profile".tr,

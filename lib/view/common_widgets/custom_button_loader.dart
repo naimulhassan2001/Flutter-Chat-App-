@@ -24,13 +24,13 @@ class CustomButtonLoader extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(buttonColor),
-          shape: MaterialStateProperty.all(
+          backgroundColor: WidgetStateProperty.all(buttonColor),
+          shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(buttonRadius ?? 50.r),
             ),
           ),
-          elevation: MaterialStateProperty.all(0),
+          elevation: WidgetStateProperty.all(0),
         ),
         child: const SizedBox(
           height: 16,

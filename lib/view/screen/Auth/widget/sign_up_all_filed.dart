@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/helpers/other_helper.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import '../../../../../../utils/app_colors.dart';
 import '../../../../controller/Auth/sign_up_controller.dart';
-import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 
 class SignUpAllField extends StatefulWidget {
@@ -36,33 +32,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               labelText: "Email".tr,
               validator: OtherHelper.emailValidator,
             ),
-            20.height,
-            IntlPhoneField(
-              controller: controller.numberController,
-              initialValue: "",
-              decoration: InputDecoration(
-                hintText: "Phone Number".tr,
-                fillColor: AppColors.greyscale,
-                filled: true,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 4.w, vertical: 14.h),
-                border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-              ),
-              initialCountryCode: "BD",
-              disableLengthCheck: false,
-              autovalidateMode: AutovalidateMode.disabled,
-            ),
-            CustomTextField(
-              controller: controller.genderController,
-              suffixIcon: PopUpMenu(
-                onTap: controller.onSelectItem,
-                items: controller.list,
-                selectedItem: controller.genderController.text,
-              ),
-              labelText: "Gender".tr,
-              validator: OtherHelper.validator,
-            ),
+
             20.height,
             CustomTextField(
               controller: controller.passwordController,

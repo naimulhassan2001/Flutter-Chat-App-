@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_app/core/app_routes.dart';
 import 'package:flutter_chat_app/extension/extension.dart';
 import 'package:flutter_chat_app/models/api_response_model.dart';
 import 'package:flutter_chat_app/models/chat_list_model.dart';
@@ -94,9 +93,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     ],
                   ),
                   const Spacer(),
-                  IconButton(
-                      onPressed: () => Get.toNamed(AppRoutes.videoCall),
-                      icon: const Icon(Icons.videocam_outlined)),
+
                   const Icon(Icons.more_vert_outlined)
                 ],
               ),

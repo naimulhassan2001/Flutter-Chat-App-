@@ -6,6 +6,7 @@ class AppUrls {
   static const socketUrl = "http://192.168.0.103:5000";
 
   static const signUp = "$baseUrl/auth/sign-up";
+  static const userVerify = "$baseUrl/auth/user-verify";
   static const signIn = "$baseUrl/auth/sign-in";
   static const chat = "$baseUrl/chat";
   static const conversation = "$baseUrl/conversation";

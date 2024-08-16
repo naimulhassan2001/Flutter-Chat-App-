@@ -424,6 +424,7 @@ class AppString {
   static const String enterYourEmail = "Enter your Email";
 
   static const String pleaseEnterTheOTPCode = "Please enter the OTP code";
+  static const String otpVerify = "Otp Verify";
 
   static const String enterCardHolderName = "Enter card holder Name";
 
@@ -485,6 +486,11 @@ class AppString {
   static const String pleaseSelectDataAndTime = "Please, select data and time";
   static const String selectTime = "Select Time";
   static const String selectDate = "Select date";
+  static const String codeHasBeenSendTo = "Code has been send To";
+  static const String otpIsInValid = "Otp Is InValid";
+  static const String resendCodeIn = "Resend Code In";
+  static const String verify = "Verify";
+  static const String minute = "Minute";
   static const String subscriptionExpired = "Subscription expired";
   static const String yourSubscriptionIsExpiredPayAgainToGetService =
       "Your subscription is expired, pay again to get service";

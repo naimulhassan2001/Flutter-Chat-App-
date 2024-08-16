@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_chat_app/core/app_routes.dart';
 import 'package:flutter_chat_app/helpers/prefs_helper.dart';
 import 'package:flutter_chat_app/models/chat_list_model.dart';
@@ -59,11 +60,15 @@ class HomeController extends GetxController {
       "creator": PrefsHelper.userId
     };
 
-    print("================================================> body $body");
+    if (kDebugMode) {
+      print("================================================> body $body");
+    }
 
     SocketServices.socket.emitWithAck("request-chat", body, ack: (data) {
-      print(
-          "===============================================================> Received acknowledgment: $data");
+      if (kDebugMode) {
+        print(
+          "==========================> Received acknowledgment: $data");
+      }
 
       ChatListModel item = ChatListModel.fromJson(data['data']);
 
