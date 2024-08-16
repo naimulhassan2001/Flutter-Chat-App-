@@ -21,7 +21,6 @@ class ChatController extends GetxController {
 
     var response = await ApiService.getApi(AppUrls.chat);
 
-
     if (response.statusCode == 200) {
       chats.clear();
       List data = jsonDecode(response.body)["data"] ?? [];
@@ -48,7 +47,7 @@ class ChatController extends GetxController {
 
       chats.clear();
 
-      for (var item in data) {
+      for (var item in data["chatList"]) {
         chats.add(ChatListModel.fromJson(item));
       }
 

@@ -17,6 +17,8 @@ class CustomTextField extends StatefulWidget {
     this.textAlign = TextAlign.start,
     this.onChanged,
     this.maxLines = 1,
+    this.vertical = 16,
+    this.horizontal = 14,
     this.validator,
     this.labelText,
     this.hindText,
@@ -61,6 +63,8 @@ class CustomTextField extends StatefulWidget {
   final bool isPrefixIcon;
   final bool readOnly;
   final int? maxLength;
+  final double vertical;
+  final double horizontal;
   final List<TextInputFormatter>? inputFormatters;
 
   @override
@@ -90,7 +94,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       validator: widget.validator,
       showCursor: widget.keyboardType == TextInputType.none ? false : true,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 14.w),
+        contentPadding: EdgeInsets.symmetric(
+            vertical: widget.vertical, horizontal: widget.horizontal),
         labelText: widget.labelText,
         hintText: widget.hindText,
         labelStyle: widget.textStyle,

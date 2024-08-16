@@ -29,11 +29,7 @@ class SignUpController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController otpController = TextEditingController();
 
-
-
   signUpRepo() async {
-    Get.offAllNamed(AppRoutes.userVerify);
-    return ;
     isLoading = true;
     update();
 
@@ -49,21 +45,7 @@ class SignUpController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
-      PrefsHelper.token = data["data"]["token"]["accessToken"];
-      PrefsHelper.myName = data["data"]["user"]['name'];
-      PrefsHelper.myEmail = data["data"]["user"]['email'];
-      PrefsHelper.myImage = data["data"]["user"]['image'];
-      PrefsHelper.userId = data["data"]["user"]['_id'];
-      PrefsHelper.isLogIn = true;
-
-      PrefsHelper.setString("token", PrefsHelper.token);
-      PrefsHelper.setString("myName", PrefsHelper.myName);
-      PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
-      PrefsHelper.setString("myImage", PrefsHelper.myImage);
-      PrefsHelper.setString("userId", PrefsHelper.userId);
-      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
-      Get.offAllNamed(AppRoutes.home);
+      Get.toNamed(AppRoutes.userVerify);
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
@@ -92,37 +74,30 @@ class SignUpController extends GetxController {
   }
 
   Future<void> verifyOtpRepo() async {
-    Get.toNamed(AppRoutes.home);
-    return;
     isLoadingVerify = true;
     update();
-    Map<String, String> body = {"otp": otpController.text};
-    var response =
-    await ApiService.postApi(AppUrls.userVerify, body);
+    Map<String, String> body = {
+      "email": emailController.text,
+      "otp": otpController.text
+    };
+    var response = await ApiService.postApi(AppUrls.userVerify, body);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-
-      PrefsHelper.token = data['data']["accessToken"];
-      PrefsHelper.userId = data['data']["attributes"]["_id"];
-      PrefsHelper.myImage = data['data']["attributes"]["image"];
-      PrefsHelper.myName = data['data']["attributes"]["fullName"];
-      PrefsHelper.myEmail = data['data']["attributes"]["email"];
+      PrefsHelper.token = data["data"]["token"]["accessToken"];
+      PrefsHelper.myName = data["data"]["user"]['name'];
+      PrefsHelper.myEmail = data["data"]["user"]['email'];
+      PrefsHelper.myImage = data["data"]["user"]['image'];
+      PrefsHelper.userId = data["data"]["user"]['_id'];
       PrefsHelper.isLogIn = true;
 
-      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
-      PrefsHelper.setString('token', PrefsHelper.token);
-      PrefsHelper.setString("userId", PrefsHelper.userId);
-      PrefsHelper.setString("myImage", PrefsHelper.myImage);
+      PrefsHelper.setString("token", PrefsHelper.token);
       PrefsHelper.setString("myName", PrefsHelper.myName);
       PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
+      PrefsHelper.setString("myImage", PrefsHelper.myImage);
+      PrefsHelper.setString("userId", PrefsHelper.userId);
       PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
-
-      // if (PrefsHelper.myRole == 'consultant') {
-      //   Get.toNamed(AppRoutes.personalInformation);
-      // } else {
-      //   Get.offAllNamed(AppRoutes.patientsHome);
-      // }
+      Get.offAllNamed(AppRoutes.home);
     } else {
       Get.snackbar(response.statusCode.toString(), response.message);
     }

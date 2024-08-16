@@ -56,7 +56,7 @@ class HomeController extends GetxController {
   createChatRoom(UserModel user) async {
     var body = {
       "participants": [PrefsHelper.userId, user.id],
-      "name": "",
+      "name": user.name,
       "creator": PrefsHelper.userId
     };
 
