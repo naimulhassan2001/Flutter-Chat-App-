@@ -57,8 +57,7 @@ class ForgetPasswordController extends GetxController {
   }
 
   Future<void> forgotPasswordRepo() async {
-    Get.toNamed(AppRoutes.verifyForgotOtp);
-    return ;
+
     isLoadingEmail = true;
     update();
 
@@ -80,8 +79,7 @@ class ForgetPasswordController extends GetxController {
   ///<<<===================Verify Password Repo==============================>>>
 
   Future<void> verifyOtpRepo() async {
-    Get.toNamed(AppRoutes.createPassword);
-    return ;
+
     isLoadingVerify = true;
     update();
     Map<String, String> body = {
@@ -109,8 +107,6 @@ class ForgetPasswordController extends GetxController {
   ///<<<===================Verify Password Repo==============================>>>
 
   Future<void> resetPasswordRepo() async {
-    Get.offAllNamed(AppRoutes.signIn);
-    return ;
     isLoadingReset = true;
     update();
     Map<String, String> header = {

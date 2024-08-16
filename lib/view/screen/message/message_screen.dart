@@ -40,7 +40,7 @@ class _MessageScreenState extends State<MessageScreen> {
       Duration.zero,
       () {
         controller.getMessagesRepo(chatData.sId);
-        controller.listenMessage(chatData.sId);
+        controller.listenMessage();
       },
     );
     super.initState();
@@ -151,6 +151,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     Expanded(
                       child: CustomTextField(
                         maxLines: 1,
+                        vertical: 0,
                         keyboardType: TextInputType.text,
                         textAlign: TextAlign.start,
                         hindText: "",
@@ -166,7 +167,7 @@ class _MessageScreenState extends State<MessageScreen> {
                     ),
                     20.width,
                   ]),
-                  20.width
+                  20.height
                 ],
               )));
     });

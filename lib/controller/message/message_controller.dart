@@ -12,13 +12,7 @@ import '../../utils/app_images.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 
-
 class MessageController extends GetxController {
-
-
-
-
-
   Status status = Status.completed;
   bool isLoading = false;
   bool isMoreLoading = false;
@@ -28,13 +22,8 @@ class MessageController extends GetxController {
   ScrollController scrollController = ScrollController();
   TextEditingController messageController = TextEditingController();
 
-
-
-
-
-
-
   addNewMessage(String chatId) async {
+    if(messageController.text.isEmpty) return ;
     TimeOfDay currentTime = TimeOfDay.now();
 
     messages.insert(
@@ -91,12 +80,12 @@ class MessageController extends GetxController {
     }
   }
 
-  listenMessage(String chatId) async {
+  listenMessage() async {
     SocketServices.socket.on("receive-message::${PrefsHelper.userId}", (data) {
-      if (kDebugMode) {
-        print("socket data get : $data");
-      }
       MessageModel message = MessageModel.fromJson(data);
+      if (kDebugMode) {
+        print("socket: $data");
+      }
       var time = localTime(message.createdAt);
 
       messages.insert(
@@ -120,5 +109,3 @@ class MessageController extends GetxController {
     return "$hour:$minute";
   }
 }
-
-

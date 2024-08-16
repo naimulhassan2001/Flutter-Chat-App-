@@ -1,9 +1,13 @@
 class AppUrls {
   ///<<<=================Base Url=========================>>>
 
-  static const baseUrl = "http://192.168.0.103:5000";
-  static const imageUrl = "http://192.168.0.103:5000/";
-  static const socketUrl = "http://192.168.0.103:5000";
+  // static const baseUrl = "http://192.168.0.104:5000";
+  // static const imageUrl = "http://192.168.0.104:5000/";
+  // static const socketUrl = "http://192.168.0.104:5000";
+
+  static const baseUrl = "https://connect-beta-nine.vercel.app";
+  static const imageUrl = "https://connect-beta-nine.vercel.app/";
+  static const socketUrl = "https://connect-beta-nine.vercel.app/";
 
   static const signUp = "$baseUrl/auth/sign-up";
   static const userVerify = "$baseUrl/auth/user-verify";
